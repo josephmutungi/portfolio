@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "NovaStack Digital | Web Development Company in Kenya",
-    template: "%s | NovaStack Digital",
+    default: "Jmmlabs | Web Development Company in Kenya",
+    template: "%s | Jmmlabs",
   },
   description:
-    "NovaStack Digital is a professional web development company in Kenya specializing in fast, SEO-optimized websites, React, Next.js, and scalable backend solutions.",
+    "Jmmlabs is a professional web development company in Kenya specializing in fast, SEO-optimized websites, React, Next.js, and scalable backend solutions.",
   keywords: [
     "web development company in Kenya",
     "Next.js developers Kenya",
@@ -30,13 +30,13 @@ export const metadata = {
     "SEO optimized websites",
     "custom web applications",
     "Best we developer",
-    "Novastack digital",
+    "jmmlabs",
     "Mutungi Muithi",
     "Joseph Mutungi",
   ],
   metadataBase: new URL("https://novastackdigital.co.ke"),
   openGraph: {
-    title: "NovaStack Digital | Web Development Company in Kenya",
+    title: "Jmmlabs | Web Development Company in Kenya",
     description:
       "We build fast, secure, and scalable websites using Next.js, React, and modern backend technologies.",
     url: "https://novastackdigital.co.ke",
@@ -46,7 +46,7 @@ export const metadata = {
         url: "/hero.png",
         width: 1200,
         height: 630,
-        alt: "NovaStack Digital Web Development Company",
+        alt: "Jmmlabs",
       },
     ],
     locale: "en_KE",
@@ -54,7 +54,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NovaStack Digital | Web Development Company in Kenya",
+    title: "Jmmlabs | Web Development Company in Kenya",
     description:
       "Professional web development services using React, Next.js, and scalable backend solutions.",
     images: ["/preview.png"],
@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "NovaStack Digital",
+              name: "Jmmlabs",
               url: "https://novastackdigital.com",
               logo: "https://novastackdigital.com/logo.png",
               sameAs: [
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
                 addressCountry: "KE",
               },
               description:
-                "NovaStack Digital is a web development company in Kenya delivering fast, SEO-optimized websites and scalable web applications.",
+                "Jmmlabs is a web development company in Kenya delivering fast, SEO-optimized websites and scalable web applications.",
             }),
           }}
         />

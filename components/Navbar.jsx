@@ -10,6 +10,7 @@ const links = [
   { name: "About Us", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Projects", path: "/projects" },
+  { name: "Pricing", path: "/pricing" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -39,14 +40,14 @@ export default function Navbar() {
       <div
         className={`relative z-[120] w-full transition-colors duration-300 ${isOpen ? "bg-white" : "bg-white/90 backdrop-blur-md border-b border-gray-100"}`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-30 flex items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
             className="relative hover:opacity-90 transition-opacity"
             onClick={() => setIsOpen(false)}
           >
-            <div className="relative w-[130px] h-[50px] md:w-[160px] md:h-[55px]">
+            <div className="relative w-[130px] h-[100px] md:w-[160px] md:h-[120px]">
               <Image
                 src="/jmmlabslogo.png"
                 alt="JMM Labs Logo"

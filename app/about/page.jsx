@@ -84,14 +84,14 @@ export default function AboutPage() {
             The Hub of <span className="text-red-600">Modern Engineering</span>
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed mb-6">
-            Based in the heart of Kenya’s tech scene, **JMM Labs** bridges the
+            Based in the heart of Kenya’s tech scene, JMM Labs bridges the
             gap between complex backend architecture and stunning user
             interfaces. We don’t just build websites; we engineer growth
             engines.
           </p>
           <p className="text-slate-600 text-lg leading-relaxed">
-            Our philosophy is built on four pillars: **Security, Speed,
-            Scalability, and SEO.** Every line of code we write is optimized to
+            Our philosophy is built on four pillars: Security, Speed,
+            Scalability, and SEO. Every line of code we write is optimized to
             ensure your business ranks higher and performs faster than the
             competition.
           </p>
@@ -106,7 +106,7 @@ export default function AboutPage() {
         >
           <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600 to-red-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
           <Image
-            src="/image6.png"
+            src="/image4.png"
             alt="JMM Labs Development Team working on Next.js projects"
             width={600}
             height={400}

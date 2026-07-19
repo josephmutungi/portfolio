@@ -87,7 +87,6 @@ export default function RootLayout({ children }) {
               logo: "https://novastackdigital.com/logo.png",
               sameAs: [
                 "https://github.com/Joseh-star-dev",
-                "https://linkedin.com/in/YOUR_LINKEDIN",
               ],
               address: {
                 "@type": "PostalAddress",

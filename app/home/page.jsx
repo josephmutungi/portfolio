@@ -8,7 +8,8 @@ import Testimonials from "@/components/Testimonials";
 
 // HIGH-LEVEL SEO CONFIGURATION
 export const metadata = {
-  title: "JMMLabs | Software Development Agency in Kenya",
+  title:
+    "JMMLabs | Software Development Agency in Kenya | Web developer | software developer",
   description:
     "JMMLabs is a leading digital transformation agency in Nairobi, Kenya. We specialize in custom software development, high-performance Next.js websites, and scalable enterprise solutions for modern businesses.",
   keywords: [
@@ -71,7 +72,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Services Section - Usually focused on core offerings */}
-      <section id="services" className="py-10 bg-gray-50/50">
+      <section id="services" className="bg-gray-50/50">
         <ServicesPage />
       </section>
 

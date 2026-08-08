@@ -62,7 +62,7 @@ export default function ServicesPage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Header Section */}
-      <section className="py-20 bg-white border-b border-gray-100">
+      <section className="bg-white border-b pb-10 border-gray-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -80,7 +80,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
+      <section className="py-20 max-w-7xl mx-auto px-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -117,8 +117,8 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-8">
+        <div className="max-w-5xl mx-auto px-2">
           <div className="bg-blue-700 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
             <h2 className="text-3xl md:text-5xl font-bold mb-6">

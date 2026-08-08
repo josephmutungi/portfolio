@@ -84,10 +84,9 @@ export default function AboutPage() {
             The Hub of <span className="text-red-600">Modern Engineering</span>
           </h2>
           <p className="text-slate-600 text-lg leading-relaxed mb-6">
-            Based in the heart of Kenya’s tech scene, JMM Labs bridges the
-            gap between complex backend architecture and stunning user
-            interfaces. We don’t just build websites; we engineer growth
-            engines.
+            Based in the heart of Kenya’s tech scene, JMM Labs bridges the gap
+            between complex backend architecture and stunning user interfaces.
+            We don’t just build websites; we engineer growth engines.
           </p>
           <p className="text-slate-600 text-lg leading-relaxed">
             Our philosophy is built on four pillars: Security, Speed,
@@ -170,7 +169,7 @@ export default function AboutPage() {
 
       {/* 4. CORE VALUES - Icon Grid */}
       <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-2">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-slate-900">
               Why JMM Labs?

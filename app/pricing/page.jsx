@@ -158,7 +158,7 @@ function PriceLedger({ label, value, isSuffix }) {
   );
 }
 
-const WHATSAPP_NUMBER = "254113822842"; // 0113822842 in international format, no leading 0/+
+const WHATSAPP_NUMBER = "+254758133905"; // 0113822842 in international format, no leading 0/+
 
 function buildWhatsappLink(tier) {
   const message =
@@ -342,7 +342,7 @@ export default function PricingPage() {
 
   return (
     <div
-      className="min-h-screen antialiased"
+      className="min-h-screen antialiased mt-30"
       style={{ background: "#F6F8F6", color: "#0B2545" }}
     >
       <style>{`
@@ -356,10 +356,7 @@ export default function PricingPage() {
         style={{ background: "#FFFFFF", borderBottom: "1px solid #DDE3DC" }}
       >
         <div className="max-w-5xl mx-auto text-center">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
-            style={{ background: "#E7F7EE", color: "#00A651" }}
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 bg-blue-100 text-blue-600">
             <Terminal className="w-3.5 h-3.5" />
             <span
               className="text-xs font-bold uppercase tracking-widest"
@@ -377,12 +374,9 @@ export default function PricingPage() {
           >
             Transparent pricing,
             <br />
-            <span style={{ color: "#00A651" }}>built to drive revenue.</span>
+            <span className="text-blue-600">built to drive revenue.</span>
           </h1>
-          <p
-            className="text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{ color: "#5B6A63" }}
-          >
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed">
             Fair engineering rates that protect your cash flow, while we deploy
             premium, hardened codebases for your business.
           </p>

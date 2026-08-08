@@ -98,15 +98,15 @@ export default function Contact() {
             <ContactLink
               icon={<FaWhatsapp />}
               label="WhatsApp"
-              value="+254 113 822 842"
-              href="https://wa.me/254113822842"
+              value="+254 758 133 905"
+              href="https://wa.me/+254758133905"
               color="bg-green-50 text-green-600"
             />
             <ContactLink
               icon={<FaGithub />}
               label="Engineering Portfolio"
-              value="Joseh-star-dev"
-              href="https://github.com/Joseh-star-dev"
+              value="josephmutungi"
+              href="https://github.com/josephmutungi"
               color="bg-slate-100 text-slate-900"
             />
             <ContactLink
@@ -122,7 +122,7 @@ export default function Contact() {
                 Business Hours
               </h4>
               <p className="text-slate-400 text-sm">
-                Mon — Fri: 9:00 AM - 6:00 PM (EAT)
+                Mon — Fri: 8:00 AM - 6:00 PM (EAT)
               </p>
               <p className="text-slate-400 text-sm mt-1">
                 Available for emergency support 24/7.

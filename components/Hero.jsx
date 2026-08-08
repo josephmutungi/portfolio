@@ -26,7 +26,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 z-10"
+      className="relative w-full bg-white overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 z-10 mt-8"
       /* pt-32 ensures content starts below the 80px (h-20) navbar */
     >
       {/* Modern Tech Background Elements */}
@@ -49,7 +49,7 @@ export default function HeroSection() {
           >
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-red-50 border border-red-100 mb-8"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -84,13 +84,13 @@ export default function HeroSection() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-5"
+              className="flex md:text-lg text-xs gap-5 flex-row w-full"
             >
               <Link
                 href="/contact"
                 className="group px-8 py-4 bg-blue-700 text-white font-bold rounded-2xl shadow-xl shadow-blue-200 hover:bg-blue-800 transition-all flex items-center gap-3 active:scale-95"
               >
-                Launch Your Project
+                Get Quote
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -98,7 +98,7 @@ export default function HeroSection() {
                 href="/projects"
                 className="px-8 py-4 border-2 border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95"
               >
-                View Case Studies
+                View Projects
               </Link>
             </motion.div>
 

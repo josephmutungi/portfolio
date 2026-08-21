@@ -158,7 +158,7 @@ function PriceLedger({ label, value, isSuffix }) {
   );
 }
 
-const WHATSAPP_NUMBER = "+254758133905"; // 0113822842 in international format, no leading 0/+
+const WHATSAPP_NUMBER = "+254758133905"; // international format, no leading 0/+
 
 function buildWhatsappLink(tier) {
   const message =

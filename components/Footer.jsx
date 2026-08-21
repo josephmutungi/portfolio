@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaWhatsapp, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaJs } from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -36,10 +37,8 @@ export default function Footer() {
               />
               <SocialIcon
                 icon={<FaWhatsapp />}
-                href="https://wa.me/254113822842"
+                href="https://wa.me/254758133905"
               />
-              <SocialIcon icon={<FaLinkedin />} href="#" />
-              <SocialIcon icon={<FaTwitter />} href="#" />
             </div>
           </div>
 
@@ -137,7 +136,7 @@ export default function Footer() {
             </div>
             <div className="h-4 w-px bg-slate-200"></div>
             <p className="text-slate-400 text-[11px] font-semibold">
-              Built with <span className="text-red-600">❤</span> & Next.js
+              Built with Next.js
             </p>
           </div>
         </div>

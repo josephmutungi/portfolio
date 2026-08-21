@@ -6,8 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 import Image from "next/image";
+import { X } from "lucide-react";
 
 const links = [
+  { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Projects", path: "/projects" },
@@ -48,7 +50,7 @@ export default function Navbar() {
             className="relative hover:opacity-90 transition-opacity"
             onClick={() => setIsOpen(false)}
           >
-            <div className="relative w-[130px] h-[80px] md:w-[160px] md:h-[120px]">
+            <div className="relative w-[160px] h-[90px] md:w-[160px] md:h-[120px]">
               <Image
                 src="/jmmlabslogo.png"
                 alt="JMM Labs Logo"
@@ -59,24 +61,12 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="md:hidden"
+          <div
+            className="px-4 py-2 rounded-md shadow text-gray-900"
+            onClick={() => setIsOpen(true)}
           >
-            <button
-              onClick={() => {
-                handleWhatsAppClick();
-                setIsOpen(false);
-              }}
-              className="w-full flex items-center justify-center gap-3 py-1.5 px-3 bg-blue-600 text-white rounded-2xl font-bold text-xs shadow-xl shadow-green-100"
-            >
-              <FaWhatsapp size={24} />
-              WhatsApp Us
-            </button>
-          </motion.div>
-
+            <FaBars size={30} />
+          </div>
           {/* Desktop Navigation (Hidden on Mobile) */}
           <div className="hidden md:flex items-center gap-1 bg-gray-50/80 p-1.5 rounded-full border border-gray-100">
             {links.map((l) => {
@@ -114,17 +104,26 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+      </div>
 
-        <div className="md:hidden px-2 z-50 bg-white">
+      {isOpen && (
+        <div className="md:hidden bg-black/30 min-h-screen absolute top-0 z-[130] w-full">
           {/* Safe Area Padding for content inside menu (Starts below the 80px top bar) */}
-          <div className="flex flex-col overflow-x-auto">
-            <div className="flex p-4 gap-3">
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-col bg-white p-8 relative w-70 h-screen scroll-y-auto"
+          >
+            <X onClick={() => setIsOpen(false)} className="absolute right-10" />
+            <div className="flex flex-col gap-6 w-full">
               {links.map((l, i) => (
-                <div key={l.name}>
+                <div key={l.name} className="">
                   <Link
                     href={l.path}
                     onClick={() => setIsOpen(false)}
-                    className={`px-4 py-3 bg-gray-200 space-y-3 rounded-md text-xs font-bold tracking-tight ${
+                    className={`px-4 mb-6 text-sm rounded-md font-bold tracking-tight ${
                       pathName === l.path ? "text-blue-600" : "text-gray-900"
                     }`}
                   >
@@ -133,9 +132,26 @@ export default function Navbar() {
                 </div>
               ))}
             </div>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="md:hidden mt-20"
+            >
+              <button
+                onClick={() => {
+                  handleWhatsAppClick();
+                  setIsOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-3 py-3 px-3 bg-blue-600 text-white rounded-2xl font-bold text-xs shadow-xl shadow-green-100"
+              >
+                <FaWhatsapp size={24} />
+                WhatsApp Us
+              </button>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

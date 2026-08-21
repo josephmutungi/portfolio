@@ -20,13 +20,13 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: { duration: 0.2, ease: "easeOut" },
     },
   };
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 z-10 mt-8"
+      className="relative w-full bg-white overflow-hidden pt-30 pb-20 lg:pt-48 lg:pb-32 z-10"
       /* pt-32 ensures content starts below the 80px (h-20) navbar */
     >
       {/* Modern Tech Background Elements */}

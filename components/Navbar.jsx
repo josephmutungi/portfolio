@@ -62,7 +62,7 @@ export default function Navbar() {
           </Link>
 
           <div
-            className="px-4 py-2 rounded-md shadow text-gray-900"
+            className="md:hidden px-4 py-2 rounded-md shadow text-gray-900"
             onClick={() => setIsOpen(true)}
           >
             <FaBars size={30} />

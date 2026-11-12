@@ -1,157 +1,184 @@
 "use client";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
 
 import Image from "next/image";
-import { X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const links = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Projects", path: "/projects" },
   { name: "Pricing", path: "/pricing" },
-  { name: "Contact", path: "/contact" },
+  { name: "About", path: "/about" },
 ];
-
-const handleWhatsAppClick = () => {
-  const phone = "+254758133905";
-  const message = "Hello, I need help from JMMLABS.co.ke!";
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
-};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
   }, [isOpen]);
 
   return (
-    <nav className="fixed top-0 w-full z-[100]">
-      {/* Main Navbar Header (Always visible) */}
-      <div
-        className={`relative z-[120] w-full transition-colors duration-300  bg-white backdrop-blur-md md:border-b border-gray-100"`}
-      >
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center bg-white">
-          {/* Logo */}
+    <nav aria-label="Main navigation" className="fixed inset-x-0 top-0 z-[100]">
+      <div className="border-b border-slate-200/80 bg-white/95 shadow-[0_4px_24px_rgba(15,23,42,0.05)] backdrop-blur-xl">
+        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="relative hover:opacity-90 transition-opacity"
+            aria-label="JMM Labs home"
             onClick={() => setIsOpen(false)}
+            className="relative h-[62px] w-[132px] shrink-0 transition-opacity hover:opacity-80"
           >
-            <div className="relative w-[160px] h-[90px] md:w-[160px] md:h-[120px]">
-              <Image
-                src="/jmmlabslogo.png"
-                alt="JMM Labs Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+            <Image
+              src="/jmmlabslogo.png"
+              alt="JMM Labs"
+              fill
+              sizes="132px"
+              className="object-contain object-left"
+              priority
+            />
           </Link>
 
-          <div
-            className="md:hidden px-4 py-2 rounded-md shadow text-gray-900"
-            onClick={() => setIsOpen(true)}
-          >
-            <FaBars size={30} />
-          </div>
-          {/* Desktop Navigation (Hidden on Mobile) */}
-          <div className="hidden md:flex items-center gap-1 bg-gray-50/80 p-1.5 rounded-full border border-gray-100">
-            {links.map((l) => {
-              const isActive = pathName === l.path;
+          <div className="hidden items-center gap-0.5 rounded-full p-1 lg:flex">
+            {links.map(({ name, path }) => {
+              const isActive =
+                pathName === path || pathName.startsWith(path + "/");
               return (
                 <Link
-                  key={l.name}
-                  href={l.path}
-                  className={`relative px-5 py-2 text-sm font-semibold transition-colors duration-300 rounded-full ${
+                  key={name}
+                  href={path}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative rounded-full px-3.5 py-2 text-[13px] font-semibold transition-colors duration-200 ${
                     isActive
-                      ? "text-blue-600"
-                      : "text-gray-500 hover:text-gray-900"
+                      ? "text-blue-700"
+                      : "text-slate-600 hover:text-blue-700"
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-white shadow-sm rounded-full"
-                      transition={{ type: "spring", duration: 0.5 }}
+                      className="absolute inset-0 rounded-full bg-white shadow-sm ring-1 ring-slate-200/70"
+                      transition={{ type: "spring", duration: 0.45 }}
                     />
                   )}
-                  <span className="relative z-10">{l.name}</span>
+                  <span className="relative z-10">{name}</span>
                 </Link>
               );
             })}
           </div>
 
-          {/* Action Button (Desktop Only) */}
-          <div className="hidden md:block">
-            <button
-              onClick={handleWhatsAppClick}
-              className="bg-blue-600 px-6 py-2.5 rounded-full text-white font-bold text-sm transition-all hover:bg-blue-700 active:scale-95 shadow-lg shadow-green-100"
-            >
-              GET STARTED
-            </button>
-          </div>
+          <Link
+            href="/contact"
+            className="hidden items-center gap-2 rounded-full bg-blue-700 px-5 py-3 text-xs font-bold tracking-wide text-white shadow-md shadow-blue-900/15 transition hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg active:translate-y-0 lg:inline-flex"
+          >
+            Request a quote
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 lg:hidden"
+          >
+            {isOpen ? <X size={21} /> : <Menu size={21} />}
+          </button>
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-black/30 min-h-screen absolute top-0 z-[130] w-full">
-          {/* Safe Area Padding for content inside menu (Starts below the 80px top bar) */}
-
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-            className="flex flex-col bg-white p-8 relative w-70 h-screen scroll-y-auto"
+            className="fixed inset-0 top-[76px] z-[110] bg-slate-950/35 backdrop-blur-[2px] lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
           >
-            <X onClick={() => setIsOpen(false)} className="absolute right-10" />
-            <div className="flex flex-col gap-6 w-full">
-              {links.map((l, i) => (
-                <div key={l.name} className="">
-                  <Link
-                    href={l.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`px-4 mb-6 text-sm rounded-md font-bold tracking-tight ${
-                      pathName === l.path ? "text-blue-600" : "text-gray-900"
-                    }`}
-                  >
-                    {l.name}
-                  </Link>
-                </div>
-              ))}
-            </div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="md:hidden mt-20"
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              className="ml-auto flex h-full w-full max-w-sm flex-col border-l border-slate-200 bg-white px-6 pb-8 pt-7 shadow-2xl"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 260 }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <button
-                onClick={() => {
-                  handleWhatsAppClick();
-                  setIsOpen(false);
-                }}
-                className="w-full flex items-center justify-center gap-3 py-3 px-3 bg-blue-600 text-white rounded-2xl font-bold text-xs shadow-xl shadow-green-100"
-              >
-                <FaWhatsapp size={24} />
-                WhatsApp Us
-              </button>
+              <div className="mb-5">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+                  Explore
+                </p>
+                <p className="mt-1 text-sm text-slate-500">
+                  Find what you need
+                </p>
+              </div>
+              <div className="flex flex-col gap-1">
+                {links.map(({ name, path }, index) => {
+                  const isActive =
+                    pathName === path || pathName.startsWith(path + "/");
+                  return (
+                    <motion.div
+                      key={name}
+                      initial={{ opacity: 0, x: 12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.035 }}
+                    >
+                      <Link
+                        href={path}
+                        onClick={() => setIsOpen(false)}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-semibold transition ${
+                          isActive
+                            ? "bg-blue-50 text-blue-700"
+                            : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                        }`}
+                      >
+                        {name}
+                        {isActive && (
+                          <span className="h-2 w-2 rounded-full bg-blue-600" />
+                        )}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <div className="mt-auto border-t border-slate-100 pt-6">
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-4 text-sm font-bold text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"
+                >
+                  Request a quote
+                </Link>
+                <p className="mt-4 text-center text-xs text-slate-400">
+                  JMM Labs · Digital solutions
+                </p>
+              </div>
             </motion.div>
           </motion.div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

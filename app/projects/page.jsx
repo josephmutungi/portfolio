@@ -1,337 +1,243 @@
 "use client";
 
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Search, X } from "lucide-react";
+import { categories, projects } from "./projectsData";
 
-const categories = ["All", "Web Apps", "SEO", "Design"];
-
-const projectData = [
-  {
-    id: "safari-stay",
-    title: "SafariStay Booking Engine",
-    category: "Web Apps",
-    desc: "A high-performance safari & lodge booking platform built for East African hospitality, featuring real-time availability, M-Pesa integration, and multi-currency support.",
-    tech: ["Next.js", "Tailwind CSS", "M-Pesa API", "Prisma"],
-    image:
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
-    stat: "3× faster checkout",
-    year: "2024",
-  },
-  {
-    id: "ushuru-pay",
-    title: "Ushuru-Pay Fintech Dashboard",
-    category: "Web Apps",
-    desc: "Secure KRA tax payment gateway with advanced real-time data visualization, automated compliance reports, and role-based access for enterprise finance teams.",
-    tech: ["TypeScript", "PostgreSQL", "Recharts", "Node.js"],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    stat: "KES 2B+ processed",
-    year: "2024",
-  },
-  {
-    id: "ecohome-seo",
-    title: "EcoHome SEO Overhaul",
-    category: "SEO",
-    desc: "Full technical SEO transformation for a leading green construction brand — including Core Web Vitals optimization, structured data, and content architecture redesign.",
-    tech: ["Google Search Console", "Next.js", "Schema.org", "Ahrefs"],
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-    stat: "+150% organic traffic",
-    year: "2023",
-  },
-  {
-    id: "brand-revamp",
-    title: "Savanna Freight Brand Identity",
-    category: "Design",
-    desc: "Complete visual identity system for a pan-African logistics firm — including logo suite, brand guidelines, vehicle livery, and a Figma component library for digital use.",
-    tech: ["Figma", "Illustrator", "Brand Strategy", "Motion Design"],
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    stat: "Full brand system",
-    year: "2023",
-  },
-  {
-    id: "harvest-agri",
-    title: "HarvestIQ Agri Platform",
-    category: "Web Apps",
-    desc: "A data-driven agronomy dashboard connecting Kenyan smallholder farmers with market prices, weather forecasts, and mobile extension services via USSD and web.",
-    tech: ["React", "Django", "Africa's Talking API", "PostGIS"],
-    image:
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80",
-    stat: "12K+ active farmers",
-    year: "2024",
-  },
-  {
-    id: "nairobi-eats",
-    title: "NairobiEats SEO Campaign",
-    category: "SEO",
-    desc: "Local SEO and content strategy for a Nairobi restaurant delivery aggregator, resulting in first-page rankings for 80+ high-intent food delivery keywords.",
-    tech: ["Local SEO", "Content Strategy", "GA4", "PageSpeed"],
-    image:
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80",
-    stat: "#1 rank, 80+ keywords",
-    year: "2023",
-  },
-];
-
-const techColors = {
-  "Next.js": "#0070f3",
-  "Tailwind CSS": "#38bdf8",
-  "M-Pesa API": "#00a651",
-  Prisma: "#5a67d8",
-  TypeScript: "#3178c6",
-  PostgreSQL: "#336791",
-  Recharts: "#8884d8",
-  "Node.js": "#3d9970",
-  React: "#61dafb",
-  Django: "#092e20",
-  Figma: "#f24e1e",
-  Illustrator: "#ff9a00",
-  default: "#64748b",
-};
-
-export default function ProjectsPage() {
-  const [activeTab, setActiveTab] = useState("All");
-  const [hoveredId, setHoveredId] = useState(null);
-
-  const filteredProjects = projectData.filter(
-    (p) => activeTab === "All" || p.category === activeTab,
-  );
-
+function ProjectCard({ project, index }) {
   return (
-    <section
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
-      className="bg-[#f9f7f4] min-h-screen py-24 px-6"
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.28, delay: index * 0.035 }}
+      className="h-full"
     >
-      {/* Google Font */}
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap');`}</style>
-
-      <div className="max-w-7xl mx-auto">
-        {/* ── Hero Header ── */}
-        <div className="mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-bold tracking-[0.25em] uppercase text-amber-600 mb-4"
-          >
-            JMMLabs · Portfolio
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ fontFamily: "'Playfair Display', serif" }}
-            className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight mb-6"
-          >
-            Work that
-            <br />
-            <span className="text-amber-600">moves</span> the needle.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-gray-500 max-w-xl leading-relaxed"
-          >
-            From Nairobi to the world — we build digital products, craft brand
-            identities, and grow businesses through precision engineering and
-            strategy.
-          </motion.p>
-        </div>
-
-        {/* ── Stats Row ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20"
-        >
-          {[
-            { value: "60+", label: "Projects delivered" },
-            { value: "3×", label: "Avg. traffic growth" },
-            { value: "KES 2B+", label: "Transactions processed" },
-            { value: "98%", label: "Client satisfaction" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="bg-white border border-gray-100 rounded-2xl px-6 py-5"
-            >
-              <p
-                style={{ fontFamily: "'Playfair Display', serif" }}
-                className="text-3xl font-bold text-gray-900"
-              >
-                {s.value}
-              </p>
-              <p className="text-sm text-gray-400 mt-1">{s.label}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* ── Filter Bar ── */}
-        <div className="flex flex-wrap gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 ${
-                activeTab === cat
-                  ? "bg-gray-900 text-white"
-                  : "bg-white text-gray-500 border border-gray-200 hover:border-gray-400"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-          <span className="ml-auto self-center text-sm text-gray-400">
-            {filteredProjects.length} project
-            {filteredProjects.length !== 1 ? "s" : ""}
+      <Link
+        href={`/projects/${project.id}`}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/70 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+          <Image
+            src={project.image}
+            alt={`${project.title} project preview`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/95 px-3 py-1.5 text-[11px] font-bold text-blue-800 shadow-sm backdrop-blur">
+            {project.category}
+          </span>
+          <span className="absolute right-4 top-4 rounded-full bg-slate-950/70 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur">
+            {project.year}
           </span>
         </div>
 
-        {/* ── Projects Grid ── */}
-        <motion.div layout className="grid md:grid-cols-2 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => (
-              <motion.article
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, delay: i * 0.06 }}
-                onMouseEnter={() => setHoveredId(project.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-2xl hover:shadow-gray-200/80"
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <h2 className="text-xl font-bold leading-snug text-slate-950 transition-colors group-hover:text-blue-800">
+            {project.title}
+          </h2>
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">
+            {project.description}
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+            {project.technologies.slice(0, 3).map((technology) => (
+              <li
+                key={technology}
+                className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-600"
               >
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden bg-gray-100">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} – JMMLabs Portfolio`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/30 transition-all duration-300" />
+                {technology}
+              </li>
+            ))}
+            {project.technologies.length > 3 && (
+              <li className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700">
+                +{project.technologies.length - 3}
+              </li>
+            )}
+          </ul>
+          <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-blue-700">
+            View project
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </span>
+        </div>
+      </Link>
+    </motion.article>
+  );
+}
 
-                  {/* Stat badge */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-gray-800 shadow-sm">
-                    {project.stat}
-                  </div>
+export default function ProjectsPage() {
+  const [activeCategory, setActiveCategory] = useState("All work");
+  const [searchTerm, setSearchTerm] = useState("");
 
-                  {/* Year badge */}
-                  <div className="absolute top-4 right-4 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-white">
-                    {project.year}
-                  </div>
-                </div>
+  const filteredProjects = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    return projects.filter((project) => {
+      const matchesCategory =
+        activeCategory === "All work" || project.category === activeCategory;
+      const searchableText = [
+        project.title,
+        project.description,
+        project.category,
+        ...project.technologies,
+      ]
+        .join(" ")
+        .toLowerCase();
+      return matchesCategory && searchableText.includes(normalizedSearch);
+    });
+  }, [activeCategory, searchTerm]);
 
-                {/* Content */}
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-bold tracking-widest uppercase text-amber-600">
-                      {project.category}
-                    </span>
-                  </div>
+  return (
+    <main className="min-h-screen bg-slate-50 px-4 pb-16 pt-28 font-sans text-slate-900 sm:px-6 sm:pb-20 sm:pt-32 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <header className="mb-9 flex flex-col gap-6 sm:mb-12 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+              Selected work
+            </p>
+            <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+              Projects built around real needs.
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">
+              Explore web application, design, and search projects from JMM Labs.
+              Open a project to see its focus and the technologies involved.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-900/10 transition hover:bg-blue-800"
+          >
+            Discuss a project <ArrowRight size={16} />
+          </Link>
+        </header>
 
-                  <h3
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                    className="text-2xl font-bold text-gray-900 mb-3 leading-snug"
+        <section aria-label="Filter projects" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex min-w-0 gap-2 overflow-x-auto pb-1" role="group" aria-label="Project category">
+              {categories.map((category) => {
+                const isActive = activeCategory === category;
+                const count =
+                  category === "All work"
+                    ? projects.length
+                    : projects.filter((project) => project.category === category).length;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setActiveCategory(category)}
+                    className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-100 ${
+                      isActive
+                        ? "bg-blue-700 text-white"
+                        : "border border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+                    }`}
                   >
-                    {project.title}
-                  </h3>
-
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                    {project.desc}
-                  </p>
-
-                  {/* Tech pills */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-xs font-medium px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-gray-600"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href={`/projects/${project.id}`}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 border-b-2 border-amber-500 pb-0.5 hover:border-gray-900 transition-colors"
-                  >
-                    View Case Study
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      →
+                    {category}
+                    <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${
+                      isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"
+                    }`}>
+                      {count}
                     </span>
-                  </a>
-                </div>
-              </motion.article>
+                  </button>
+                );
+              })}
+            </div>
+
+            <label className="relative block w-full lg:max-w-xs">
+              <span className="sr-only">Search projects</span>
+              <Search size={17} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder="Search projects or technology"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-10 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+              {searchTerm && (
+                <button
+                  type="button"
+                  onClick={() => setSearchTerm("")}
+                  aria-label="Clear project search"
+                  className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </label>
+          </div>
+        </section>
+
+        <div className="mb-4 mt-6 flex items-center justify-between text-sm text-slate-500" aria-live="polite">
+          <p>
+            Showing <span className="font-bold text-slate-800">{filteredProjects.length}</span>{" "}
+            {filteredProjects.length === 1 ? "project" : "projects"}
+          </p>
+          {(activeCategory !== "All work" || searchTerm) && (
+            <button
+              type="button"
+              onClick={() => {
+                setActiveCategory("All work");
+                setSearchTerm("");
+              }}
+              className="font-semibold text-blue-700 hover:text-blue-900"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+
+        <motion.div layout className="grid gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* ── CTA Banner ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mt-24 bg-gray-900 rounded-[2.5rem] px-10 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10"
-        >
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase text-amber-500 mb-3">
-              Ready to build?
+        {filteredProjects.length === 0 && (
+          <div className="mt-3 rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-14 text-center">
+            <h2 className="text-lg font-bold text-slate-900">No matching projects</h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Try another search term or clear your category filter.
             </p>
-            <h2
-              style={{ fontFamily: "'Playfair Display', serif" }}
-              className="text-3xl md:text-4xl font-bold text-white leading-tight"
+            <button
+              type="button"
+              onClick={() => {
+                setActiveCategory("All work");
+                setSearchTerm("");
+              }}
+              className="mt-5 rounded-xl bg-blue-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-800"
             >
-              Let's create something
-              <br />
-              remarkable together.
-            </h2>
+              Show all projects
+            </button>
           </div>
-          <a
-            href="/contact"
-            className="shrink-0 inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold text-sm px-8 py-4 rounded-full transition-all duration-200 hover:gap-4"
-          >
-            Start a Project <span>→</span>
-          </a>
-        </motion.div>
+        )}
 
-        {/* ── Testimonial ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 border border-gray-200 rounded-3xl px-10 py-12 bg-white"
-        >
-          <div className="flex gap-4 items-start max-w-3xl mx-auto">
-            <div className="shrink-0 w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-lg">
-              JJ
-            </div>
+        <section className="mt-14 overflow-hidden rounded-3xl bg-blue-800 px-6 py-10 text-white sm:mt-20 sm:px-10 sm:py-14">
+          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
-              <p
-                style={{ fontFamily: "'Playfair Display', serif" }}
-                className="text-xl md:text-2xl text-gray-800 italic leading-relaxed mb-5"
-              >
-                "JMMLabs transformed our digital presence. Their expertise in
-                Next.js and SEO helped us double our leads in under 3 months.
-                They don't just build — they think."
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-200">
+                Your project could be next
               </p>
-              <div>
-                <p className="font-bold text-gray-900 text-sm">John Juma</p>
-                <p className="text-gray-400 text-sm">CEO, Nairobi Tech Hub</p>
-              </div>
+              <h2 className="mt-2 text-2xl font-black sm:text-3xl">
+                Let’s build something useful together.
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-100">
+                Share the problem you’re solving and we’ll help shape the next step.
+              </p>
             </div>
+            <Link
+              href="/contact"
+              className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+            >
+              Start a conversation <ArrowRight size={16} />
+            </Link>
           </div>
-        </motion.div>
+        </section>
       </div>
-    </section>
+    </main>
   );
 }

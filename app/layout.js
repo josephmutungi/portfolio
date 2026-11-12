@@ -17,30 +17,31 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "Jmmlabs | Web Development Company in Kenya",
+    default: "JMM Labs | Web Design & Software Development",
     template: "%s | Jmmlabs",
   },
   description:
-    "Jmmlabs is a professional web development company in Kenya specializing in fast, SEO-optimized websites, React, Next.js, and scalable backend solutions.",
+    "JMM Labs builds websites, custom software, and business IT solutions for clients in Kenya, Germany, the United States, Canada, and Europe.",
   keywords: [
-    "web development company in Kenya",
-    "Next.js developers Kenya",
-    "React developers Kenya",
-    "full stack development Kenya",
-    "SEO optimized websites",
-    "custom web applications",
-    "Best we developer",
-    "jmmlabs",
-    "Mutungi Muithi",
-    "Joseph Mutungi",
+    "web development company Kenya",
+    "software development Nairobi",
+    "web design Germany",
+    "custom software development USA",
+    "web development Canada",
+    "software developers Europe",
+    "business IT support",
+    "business profile setup",
+    "operating system installation",
+    "M-Pesa integration Kenya",
+    "JMMLabs",
   ],
   metadataBase: new URL("https://novastackdigital.co.ke"),
   openGraph: {
-    title: "Jmmlabs | Web Development Company in Kenya",
+    title: "JMM Labs | Web Design & Software Development",
     description:
-      "We build fast, secure, and scalable websites using Next.js, React, and modern backend technologies.",
+      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
     url: "https://novastackdigital.co.ke",
-    siteName: "NovaStack Digital",
+    siteName: "JMM Labs",
     images: [
       {
         url: "/hero.png",
@@ -54,9 +55,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jmmlabs | Web Development Company in Kenya",
+    title: "JMM Labs | Web Design & Software Development",
     description:
-      "Professional web development services using React, Next.js, and scalable backend solutions.",
+      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
     images: ["/preview.png"],
   },
   robots: {
@@ -83,17 +84,15 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Jmmlabs",
-              url: "https://novastackdigital.com",
-              logo: "https://novastackdigital.com/logo.png",
-              sameAs: [
-                "https://github.com/Joseh-star-dev",
-              ],
+              url: "https://novastackdigital.co.ke",
+              logo: "https://novastackdigital.co.ke/jmmlabslogo.png",
+              sameAs: ["https://github.com/mutungimuithi"],
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "KE",
               },
               description:
-                "Jmmlabs is a web development company in Kenya delivering fast, SEO-optimized websites and scalable web applications.",
+                "JMM Labs builds websites, custom software, and business IT solutions for clients in Kenya and international markets.",
             }),
           }}
         />

@@ -1,118 +1,117 @@
-"use client";
-
-import React, { use } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { projects } from "../projectsData";
 
-// Lookup object to connect the URL ID to the specific project data
-const projectDatabase = {
-  "safari-stay": {
-    title: "SafariStay Booking Engine",
-    image: "https://dribbble.com",
-    client: "Safari Destinations Ltd",
-  },
-  "ushuru-pay": {
-    title: "Ushuru-Pay Fintech",
-    image: "https://dribbble.com",
-    client: "Fintech Solutions KE",
-  },
-  "ecohome-seo": {
-    title: "EcoHome Optimization",
-    image: "https://dribbble.com",
-    client: "EcoHome Properties",
-  },
-  "brand-revamp": {
-    title: "Modern Brand Identity",
-    image: "https://firmbee.com",
-    client: "Logistics Hub",
-  },
-};
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const project = projects.find((item) => item.id === id);
 
-export default function ProjectDetail({ params: paramsPromise }) {
-  // Fix 1: Await/Unwrap the params promise using React.use()
-  const params = use(paramsPromise);
-  const id = params.id;
+  if (!project) {
+    return { title: "Project not found" };
+  }
 
-  // Fix 2: Lookup the data using the ID string
-  const project = projectDatabase[id] || {
-    title: "Project Showcase",
-    image: "https://firmbee.com",
-    client: "JMMLabs Client",
+  return {
+    title: project.title,
+    description: project.description,
   };
+}
+
+export default async function ProjectDetailPage({ params }) {
+  const { id } = await params;
+  const project = projects.find((item) => item.id === id);
+
+  if (!project) notFound();
 
   return (
-    <article className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <div className="bg-gray-50 py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-blue-700 font-bold tracking-widest uppercase text-sm"
-          >
-            Case Study: {id.replace("-", " ")}
-          </motion.span>
+    <main className="min-h-screen bg-slate-50 px-4 pb-16 pt-28 font-sans text-slate-900 sm:px-6 sm:pb-20 sm:pt-32 lg:px-10">
+      <div className="mx-auto max-w-6xl">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition hover:-translate-x-0.5 hover:text-blue-900"
+        >
+          <ArrowLeft size={16} /> Back to projects
+        </Link>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black text-gray-900 mt-4 mb-8"
-          >
+        <header className="pb-7 pt-7 sm:pb-9 sm:pt-9">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-800">
+              {project.category}
+            </span>
+            <span className="text-sm text-slate-500">{project.year}</span>
+          </div>
+          <h1 className="mt-4 max-w-4xl text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
             {project.title}
-          </motion.h1>
+          </h1>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            {project.description}
+          </p>
+        </header>
 
-          <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-2xl bg-gray-200">
-            {/* Fix 3: Passed project.image instead of params.id.image */}
-            <Image
-              src={project.image}
-              alt={`${project.title} - JMMLabs Portfolio`}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 800px"
-            />
-          </div>
+        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm sm:rounded-3xl">
+          <Image
+            src={project.image}
+            alt={`${project.title} project preview`}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1152px"
+            className="object-cover"
+          />
         </div>
-      </div>
 
-      <div className="max-w-4xl mx-auto py-20 px-6 grid md:grid-cols-3 gap-12">
-        <div className="md:col-span-2 space-y-10">
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              The Challenge
+        <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.72fr]">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+              Project overview
+            </p>
+            <h2 className="mt-2 text-2xl font-black text-slate-950">
+              The focus
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              For {project.client}, JMMLabs solved critical performance
-              bottlenecks using Next.js and optimized backend queries.
+            <p className="mt-3 leading-7 text-slate-600">
+              {project.description}
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              The Result
+          <aside className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+              Project details
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              A 40% increase in mobile conversions and top-tier SEO rankings in
-              Kenya.
-            </p>
-          </section>
+            <p className="mt-2 text-sm text-slate-500">Category</p>
+            <p className="font-semibold text-slate-900">{project.category}</p>
+            <h3 className="mt-5 text-sm font-bold text-slate-900">
+              Technologies and tools
+            </h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {project.technologies.map((technology) => (
+                <li
+                  key={technology}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600"
+                >
+                  {technology}
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
 
-        <div className="bg-gray-50 p-8 rounded-2xl h-fit border border-gray-100">
-          <h3 className="font-bold text-gray-900 mb-4 uppercase text-xs tracking-widest">
-            Project Details
-          </h3>
-          <div className="space-y-4">
-            <div>
-              <p className="text-gray-400 text-sm">Client</p>
-              <p className="text-gray-900 font-semibold">{project.client}</p>
-            </div>
+        <section className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl bg-blue-800 p-6 text-white sm:p-8 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-xl font-black sm:text-2xl">
+              Have a similar challenge?
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-blue-100">
+              Tell us what you’re trying to build and we’ll discuss the scope.
+            </p>
           </div>
-          <button className="w-full mt-8 bg-blue-700 text-white py-3 rounded-xl font-bold hover:bg-red-600 transition-all">
-            Live Preview
-          </button>
-        </div>
+          <Link
+            href="/contact"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+          >
+            Discuss your project <ArrowRight size={16} />
+          </Link>
+        </section>
       </div>
-    </article>
+    </main>
   );
 }

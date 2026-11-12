@@ -4,14 +4,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Code2,
-  Smartphone,
   ShieldCheck,
   Search,
-  Zap,
   Wallet,
   BugOff,
   Database,
+  Building2,
+  MonitorCog,
+  Handshake,
 } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -25,63 +27,84 @@ const services = [
     title: "M-Pesa API Integration",
     description:
       "Seamlessly integrate Daraja 2.0 for automated payment processing, STK Push, and C2B/B2C transactions in your Kenyan business.",
-    icon: <Wallet className="w-8 h-8 text-green-600" />,
+    icon: <Wallet className="w-8 h-8 text-blue-600" />,
     tags: ["Payments", "Daraja API", "Automation"],
   },
   {
     title: "SEO & Performance Optimization",
     description:
-      "Dominating search results with Server-Side Rendering (SSR) and technical SEO. We ensure your site loads in under 2 seconds.",
-    icon: <Search className="w-8 h-8 text-red-600" />,
+      "Technical SEO and performance improvements that make websites easier to find, quicker to use, and ready for customers in local and international markets.",
+    icon: <Search className="w-8 h-8 text-blue-600" />,
     tags: ["Core Web Vitals", "SSR", "SEO"],
   },
   {
     title: "Database Architecture",
     description:
       "Designing robust, secure, and scalable data models using MongoDB and Mongoose for complex property or inventory systems.",
-    icon: <Database className="w-8 h-8 text-purple-600" />,
+    icon: <Database className="w-8 h-8 text-blue-600" />,
     tags: ["MongoDB", "Mongoose", "Schemas"],
   },
   {
     title: "Cybersecurity & Hardening",
     description:
       "Protecting your digital assets with JWT authentication, data encryption, and protection against OWASP top 10 vulnerabilities.",
-    icon: <ShieldCheck className="w-8 h-8 text-orange-600" />,
+    icon: <ShieldCheck className="w-8 h-8 text-blue-600" />,
     tags: ["Auth", "Encryption", "Security"],
   },
   {
     title: "Bug Fixing & JS Support",
     description:
       "Rapid troubleshooting of complex JavaScript/TypeScript memory leaks, logic errors, and integration bottlenecks.",
-    icon: <BugOff className="w-8 h-8 text-emerald-600" />,
+    icon: <BugOff className="w-8 h-8 text-blue-600" />,
     tags: ["Debugging", "Code Audit", "Testing"],
+  },
+  {
+    title: "Business Profile Setup",
+    description:
+      "Set up or improve your Google Business Profile and relevant directory listings with accurate business details and a consistent brand presence.",
+    icon: <Building2 className="w-8 h-8 text-blue-600" />,
+    tags: ["Business Listings", "Local SEO", "Profile Setup"],
+  },
+  {
+    title: "Operating System Installation",
+    description:
+      "Installation and initial setup of supported operating systems for personal and business computers, including drivers, updates, and essential configuration. A valid software license must be supplied or purchased separately where required.",
+    icon: <MonitorCog className="w-8 h-8 text-blue-600" />,
+    tags: ["Windows", "Linux", "Computer Setup"],
+  },
+  {
+    title: "IT Partnership Listings",
+    description:
+      "IT professionals and businesses can enquire about a paid partnership or directory feature on our website. Placement scope and fees are agreed in writing before publication.",
+    icon: <Handshake className="w-8 h-8 text-blue-600" />,
+    tags: ["Partner Network", "Paid Listing", "IT Services"],
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <main className="min-h-screen bg-slate-50 font-sans text-slate-900">
       {/* Header Section */}
-      <section className="bg-white border-b pb-10 border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="border-b border-slate-200 bg-white px-4 pb-10 pt-32 sm:px-6 sm:pb-14 sm:pt-36">
+        <div className="mx-auto max-w-4xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black text-gray-900 mb-6"
+            className="mb-5 text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl"
           >
-            Software Engineering <br />
-            <span className="text-blue-700">Built for Business</span>
+            Software, business IT, and computer services
           </motion.h1>
-          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            From M-Pesa integrated management systems to SEO-dominant web apps,
-            JMMLabs delivers technical excellence that drives revenue.
+          <p className="mx-auto max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            From custom software and M-Pesa integrations to business profile
+            setup and computer support, JMM Labs helps local and international
+            businesses move forward with practical technology.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 max-w-7xl mx-auto px-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -90,22 +113,22 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group"
+              className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl sm:p-7"
             >
-              <div className="mb-6 p-4 bg-slate-50 w-fit rounded-2xl group-hover:bg-blue-50 transition-colors">
+              <div className="mb-5 w-fit rounded-xl bg-blue-50 p-3.5 transition-colors group-hover:bg-blue-100">
                 {service.icon}
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="mb-3 text-xl font-bold leading-snug text-slate-950">
                 {service.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="mb-5 text-sm leading-6 text-slate-600">
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full uppercase tracking-widest"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 sm:text-xs"
                   >
                     {tag}
                   </span>
@@ -117,23 +140,24 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-8">
-        <div className="max-w-5xl mx-auto px-2">
-          <div className="bg-blue-700 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
+      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden rounded-3xl bg-blue-800 px-6 py-10 text-center text-white shadow-xl sm:px-10 sm:py-14">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="mb-4 text-2xl font-black sm:text-3xl md:text-4xl">
               Ready to scale your digital presence?
             </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-              Whether you need a custom property management system or a secure
-              payment gateway, we are here to help.
+            <p className="mx-auto mb-7 max-w-2xl text-sm leading-6 text-blue-100 sm:text-base sm:leading-7">
+              We work remotely with clients in Kenya, Germany, the United
+              States, Canada, the UK, and other European countries. Have an IT
+              service to offer? Ask us about a paid partner listing.
             </p>
-            <button className="bg-white text-blue-700 font-black px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors shadow-lg">
-              Let's Talk Strategy
-            </button>
+            <Link href="/contact" className="inline-flex max-w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 shadow-lg transition-colors hover:bg-blue-50 sm:px-7">
+              Discuss a project or partnership
+            </Link>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

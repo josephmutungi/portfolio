@@ -20,5 +20,13 @@ export default function sitemap() {
       url: "https://novastackdigital.co.ke/services",
       lastModified: new Date(),
     },
+    {
+      url: "https://novastackdigital.co.ke/pricing",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://novastackdigital.co.ke/terms",
+      lastModified: new Date(),
+    },
   ];
 }

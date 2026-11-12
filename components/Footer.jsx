@@ -2,8 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaGithub, FaWhatsapp, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { FaJs } from "react-icons/fa6";
+import { FaGithub, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,10 +32,12 @@ export default function Footer() {
             <div className="flex gap-4 mt-6">
               <SocialIcon
                 icon={<FaGithub />}
+                label="JMM Labs on GitHub"
                 href="https://github.com/Joseh-star-dev"
               />
               <SocialIcon
                 icon={<FaWhatsapp />}
+                label="Contact JMM Labs on WhatsApp"
                 href="https://wa.me/254758133905"
               />
             </div>
@@ -44,7 +45,7 @@ export default function Footer() {
 
           {/* Solutions Column */}
           <div>
-            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-red-600 pl-3">
+            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-blue-600 pl-3">
               Solutions
             </h4>
             <ul className="space-y-4 text-sm font-semibold text-slate-500">
@@ -59,6 +60,15 @@ export default function Footer() {
               </li>
               <li>
                 <FooterLink href="/services">SEO Domination</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services">Business Profile Setup</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services">Computer & OS Setup</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services">IT Partner Listings</FooterLink>
               </li>
             </ul>
           </div>
@@ -79,32 +89,25 @@ export default function Footer() {
                 <FooterLink href="/contact">Get in Touch</FooterLink>
               </li>
               <li>
-                <FooterLink href="/privacy">Privacy Policy</FooterLink>
+                <FooterLink href="/terms">Terms of Service</FooterLink>
               </li>
             </ul>
           </div>
 
-          {/* Connect & Newsletter */}
+          {/* Contact CTA */}
           <div>
-            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-red-600 pl-3">
-              Stay Updated
+            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-blue-600 pl-3">
+              Let’s work together
             </h4>
-            <p className="text-slate-500 text-xs mb-4">
-              Get the latest tech insights from JMM Labs.
+            <p className="text-slate-500 text-sm leading-relaxed mb-5">
+              Have an idea or a challenge to solve? Tell us what you’re planning.
             </p>
-            <form className="relative">
-              <input
-                type="email"
-                placeholder="email@jmmlabs.co.ke"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all"
-              />
-              <button
-                type="submit"
-                className="absolute right-1 top-1 bg-blue-700 text-white p-2 rounded-lg hover:bg-red-600 transition-colors"
-              >
-                <FaGithub className="rotate-45" size={14} />
-              </button>
-            </form>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-800"
+            >
+              Start a conversation
+            </Link>
             <div className="mt-6">
               <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter block mb-1">
                 Office Hours
@@ -129,9 +132,9 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
-                Status: All Systems Go
+                Nairobi, Kenya
               </span>
             </div>
             <div className="h-4 w-px bg-slate-200"></div>
@@ -157,10 +160,11 @@ function FooterLink({ href, children }) {
   );
 }
 
-function SocialIcon({ icon, href }) {
+function SocialIcon({ icon, href, label }) {
   return (
     <a
       href={href}
+      aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
       className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-600 rounded-xl hover:bg-blue-700 hover:text-white transition-all duration-300 shadow-sm"

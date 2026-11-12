@@ -1,290 +1,221 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  FaRocket,
-  FaShieldAlt,
-  FaChartLine,
-  FaCode,
-  FaUsers,
-  FaLightbulb,
-} from "react-icons/fa";
+  ArrowRight,
+  Gauge,
+  Lightbulb,
+  LockKeyhole,
+  Rocket,
+  UsersRound,
+} from "lucide-react";
 
-// Animation Variants
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
+const values = [
+  {
+    icon: Lightbulb,
+    title: "Clear thinking",
+    description:
+      "We listen first, explain the options, and keep recommendations tied to your goals.",
   },
-};
+  {
+    icon: LockKeyhole,
+    title: "Dependable foundations",
+    description:
+      "We consider security, accessibility, and maintainability as part of the build.",
+  },
+  {
+    icon: Gauge,
+    title: "Useful outcomes",
+    description:
+      "We focus on tools and experiences that are practical for your customers and your team.",
+  },
+];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const imageEffect = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } },
-};
+const process = [
+  ["01", "Listen", "Understand your users, goals, and constraints."],
+  ["02", "Plan", "Agree on a clear scope, milestones, and budget."],
+  ["03", "Build", "Share progress and refine the solution together."],
+  ["04", "Support", "Launch with a clear handover and next steps."],
+];
 
 export default function AboutPage() {
   return (
-    <main className="w-full bg-white text-slate-900 overflow-x-hidden">
-      {/* 1. HERO SECTION - SEO Optimized Headline */}
-      <section className="relative bg-gray-50 py-20 md:py-32 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-blue-400 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-400 rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-red-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block"
+    <main className="overflow-hidden bg-white font-sans text-slate-900">
+      <section className="relative isolate bg-slate-50 pb-16 pt-32 sm:pb-20 sm:pt-36">
+        <div aria-hidden="true" className="absolute -right-28 -top-24 -z-10 h-96 w-96 rounded-full bg-blue-100/80 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-5 text-center sm:px-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            About JMM Labs
+          </p>
+          <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            Technology that helps good ideas move forward.
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            We’re a Nairobi-based digital technology team building websites,
+            software, and practical IT solutions for businesses in Kenya and
+            around the world.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-900/10 transition hover:bg-blue-800"
           >
-            Digital Innovation Partner
-          </motion.span>
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="text-5xl md:text-7xl font-black text-slate-900 leading-tight"
-          >
-            Elevating Brands through <br />
-            <span className="text-blue-700">JMM Labs</span> Excellence.
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            className="max-w-3xl mx-auto mt-8 text-lg md:text-xl text-slate-600 leading-relaxed"
-          >
-            We are a premier Kenyan technology collective. We specialize in
-            engineering high-performance Next.js applications and scalable
-            digital ecosystems that turn ambitious ideas into market-leading
-            realities.
-          </motion.p>
+            Talk with our team <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
-      {/* 2. WHO WE ARE - Focus on Kenyan Context & Global Standards */}
-      <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+      <section className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:px-10">
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">
-            The Hub of <span className="text-red-600">Modern Engineering</span>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            Who we are
+          </p>
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+            A hands-on partner for your next digital step.
           </h2>
-          <p className="text-slate-600 text-lg leading-relaxed mb-6">
-            Based in the heart of Kenya’s tech scene, JMM Labs bridges the gap
-            between complex backend architecture and stunning user interfaces.
-            We don’t just build websites; we engineer growth engines.
+          <p className="mt-5 leading-7 text-slate-600">
+            JMM Labs works across design, software development, and IT support.
+            We bring technical decisions back to the real need: a clearer
+            customer experience, a smoother workflow, or a more reliable system.
           </p>
-          <p className="text-slate-600 text-lg leading-relaxed">
-            Our philosophy is built on four pillars: Security, Speed,
-            Scalability, and SEO. Every line of code we write is optimized to
-            ensure your business ranks higher and performs faster than the
-            competition.
+          <p className="mt-4 leading-7 text-slate-600">
+            From the first conversation to launch, we aim to make the process
+            understandable, agree on scope before work begins, and keep
+            communication direct.
           </p>
+          <div className="mt-7 flex flex-wrap gap-2">
+            {["Web development", "Business IT", "Remote collaboration"].map((tag) => (
+              <span key={tag} className="rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600">
+                {tag}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
-          variants={imageEffect}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative group"
+          className="relative mx-auto w-full max-w-xl"
         >
-          <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600 to-red-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
+          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-blue-100 to-slate-100 blur-xl" />
           <Image
             src="/image4.png"
-            alt="JMM Labs Development Team working on Next.js projects"
-            width={600}
-            height={400}
-            className="relative rounded-2xl shadow-2xl object-cover"
+            alt="JMM Labs software development workspace"
+            width={900}
+            height={620}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="relative aspect-[4/3] w-full rounded-[1.5rem] border border-slate-200 object-cover shadow-xl"
           />
         </motion.div>
       </section>
 
-      {/* 3. FOUNDER SECTION - Personal Branding */}
-      <section className="bg-slate-900 py-24 text-white">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="order-2 md:order-1"
-          >
-            <h2 className="text-red-500 font-bold uppercase tracking-widest text-sm mb-4">
-              The Visionary
-            </h2>
-            <h3 className="text-4xl font-black mb-6">Joseph Mutungi Mwiithi</h3>
-            <p className="text-slate-400 text-lg mb-6">
-              With over half a decade of experience in the full-stack landscape,
-              Joseph founded JMM Labs to bring world-class software standards to
-              local and international businesses.
+      <section className="bg-slate-950 py-16 text-white sm:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+              Meet the founder
             </p>
-            <div className="flex gap-4">
-              <div className="border-l-4 border-blue-600 pl-4">
-                <span className="block text-2xl font-bold">100%</span>
-                <span className="text-sm text-slate-500 uppercase">
-                  Commitment
-                </span>
-              </div>
-              <div className="border-l-4 border-red-600 pl-4">
-                <span className="block text-2xl font-bold">Clean</span>
-                <span className="text-sm text-slate-500 uppercase">
-                  Architecture
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="flex justify-center order-1 md:order-2"
-          >
-            <div className="relative p-2 border-2 border-dashed border-slate-700 rounded-full">
-              <Image
-                src="/founder.jpg"
-                alt="Joseph Mutungi Mwiithi - Founder of JMM Labs"
-                width={300}
-                height={300}
-                className="h-64 w-64 md:h-80 md:w-80 rounded-full shadow-2xl object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 4. CORE VALUES - Icon Grid */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-2">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-slate-900">
-              Why JMM Labs?
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+              Joseph Mutungi Mwiithi
             </h2>
-            <p className="text-slate-500 mt-4">
-              We deliver value through precision engineering.
+            <p className="mt-4 max-w-2xl leading-7 text-slate-300">
+              Joseph founded JMM Labs to help businesses access thoughtful
+              software engineering and practical technology support. He stays
+              involved in project planning and delivery so clients have a
+              direct point of contact.
             </p>
           </div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                icon: <FaRocket />,
-                title: "SEO Mastery",
-                desc: "We build with indexability in mind, ensuring your site lands on page one.",
-                color: "text-blue-600",
-              },
-              {
-                icon: <FaShieldAlt />,
-                title: "Bulletproof Security",
-                desc: "Deploying enterprise-grade protection for every application we host.",
-                color: "text-red-600",
-              },
-              {
-                icon: <FaChartLine />,
-                title: "High Conversion",
-                desc: "Our UI/UX designs are scientifically crafted to turn visitors into customers.",
-                color: "text-blue-600",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
-                className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group"
-              >
-                <div
-                  className={`${item.color} text-4xl mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  {item.icon}
-                </div>
-                <h4 className="text-xl font-black mb-4">{item.title}</h4>
-                <p className="text-slate-500 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="flex items-center gap-5 md:flex-col md:text-center">
+            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-4 border-white/10 sm:h-32 sm:w-32">
+              <Image
+                src="/founder.jpg"
+                alt="Joseph Mutungi Mwiithi, founder of JMM Labs"
+                fill
+                sizes="128px"
+                className="object-cover"
+              />
+            </div>
+            <div className="text-sm text-slate-300">
+              <UsersRound className="mx-auto mb-1 hidden text-blue-300 md:block" size={18} />
+              Nairobi, Kenya · Remote worldwide
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 5. PROCESS - Steps */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <h2 className="text-3xl md:text-4xl font-black text-slate-900 text-center mb-20">
-          The JMM Labs Lifecycle
-        </h2>
-        <div className="grid md:grid-cols-4 gap-12">
-          {[
-            { step: "01", label: "Consultation", icon: <FaUsers /> },
-            { step: "02", label: "Strategy", icon: <FaLightbulb /> },
-            { step: "03", label: "Development", icon: <FaCode /> },
-            { step: "04", label: "Deployment", icon: <FaRocket /> },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+        <div className="mx-auto mb-9 max-w-2xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            How we work
+          </p>
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+            Good work starts with a clear plan.
+          </h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {process.map(([number, title, description], index) => (
+            <motion.article
+              key={number}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="text-center group"
+              transition={{ delay: index * 0.06 }}
+              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
             >
-              <div className="mx-auto mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-blue-50 text-blue-700 font-black text-2xl group-hover:bg-red-600 group-hover:text-white transition-all duration-500 shadow-inner">
-                {item.icon}
-              </div>
-              <span className="block text-xs font-black text-red-600 mb-2 uppercase tracking-tighter">
-                {item.step}
-              </span>
-              <p className="font-bold text-slate-800 text-lg">{item.label}</p>
-            </motion.div>
+              <p className="text-sm font-black text-blue-700">{number}</p>
+              <h3 className="mt-4 text-lg font-bold text-slate-900">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+            </motion.article>
           ))}
         </div>
       </section>
 
-      {/* 6. CTA - Final Engagement */}
-      <section className="px-6 pb-24">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto bg-blue-700 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl"
-        >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/20 rounded-full -mr-20 -mt-20 blur-3xl" />
-
-          <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-            {" "}
-            Ready to start your <br /> next big project?{" "}
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a
-              href="/contact"
-              className="bg-red-600 hover:bg-white hover:text-blue-700 px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all duration-300 shadow-xl shadow-red-900/20"
-            >
-              Get Started Now
-            </a>
-            <a
-              href="/projects"
-              className="border-2 border-white/30 hover:bg-white/10 px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all duration-300"
-            >
-              Our Portfolio
-            </a>
+      <section className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-9 max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+              What guides us
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Thoughtful work, without the guesswork.
+            </h2>
           </div>
-        </motion.div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {values.map(({ icon: Icon, title, description }) => (
+              <article key={title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <Icon size={21} />
+                </span>
+                <h3 className="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 rounded-3xl bg-blue-700 p-7 text-white shadow-xl shadow-blue-900/10 sm:p-10 md:flex-row md:items-center">
+          <div>
+            <Rocket className="mb-4 text-blue-200" size={24} />
+            <h2 className="text-2xl font-black sm:text-3xl">Have a project in mind?</h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-blue-100">
+              Tell us what you’re trying to achieve and we’ll help you map out the next step.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+          >
+            Contact JMM Labs <ArrowRight size={16} />
+          </Link>
+        </div>
       </section>
     </main>
   );

@@ -1,337 +1,216 @@
 "use client";
-import React, { useState } from "react";
+
+import { useState } from "react";
+import Link from "next/link";
 import {
+  ArrowRight,
   Check,
   ChevronDown,
   Code2,
-  Wallet,
   Database,
-  ShieldCheck,
-  ArrowRight,
-  Terminal,
   MessageCircle,
+  ShieldCheck,
+  Wallet,
 } from "lucide-react";
 
-/* ---------------------------------------------------------------
-   Design tokens
-   Ink        #0B2545  deep signal-navy — headings, primary text
-   Paper      #F6F8F6  cool off-white with a faint green cast
-   Mpesa      #00A651  the literal M-Pesa brand green — used
-              deliberately since Daraja integration is the core
-              service, not a generic "brand blue"
-   Amber      #E8A33D  receipt/ledger highlight for the anchor tier
-   Line       #DDE3DC  hairline borders
-   ----------------------------------------------------------------*/
-
-const tiers = [
+const plans = [
   {
-    name: "Micro Business",
-    id: "tier-micro",
-    setup: "KES 45,000",
-    monthly: "KES 15,000",
+    name: "Starter Website",
+    price: "KES 55,000",
+    priceNote: "one-time project fee",
     description:
-      "Essential tech to digitize operations and start accepting automated payments.",
+      "A polished, mobile-friendly website for a small business that needs a clear online presence.",
     features: [
-      "Next.js landing page or small web app",
-      "Standard M-Pesa STK Push integration",
-      "Basic SEO setup & mobile optimization",
-      "Secure JWT user authentication",
-      "Shared MongoDB database support",
-      "Next-day bug fixing support",
+      "Up to 5 pages",
+      "Responsive design for mobile and desktop",
+      "Contact form or WhatsApp link",
+      "Page titles and basic on-page SEO",
+      "Deployment and handover",
+      "2 review rounds and 30-day defect fixes",
     ],
-    cta: "Start scaling",
-    status: "READY",
-    mostPopular: false,
+    care: "Optional maintenance from KES 5,000/month",
   },
   {
-    name: "Growth Macro",
-    id: "tier-growth",
-    setup: "KES 120,000",
-    monthly: "KES 45,000",
+    name: "Business Website",
+    price: "KES 95,000",
+    priceNote: "one-time project fee",
     description:
-      "Complete full-stack systems with custom workflows for rapidly expanding businesses.",
+      "A larger site for a growing team that needs more content and room to evolve.",
     features: [
-      "Full-stack web app (Next.js & Node.js)",
-      "Advanced Daraja 2.0 API — STK, C2B, B2C",
-      "Technical SEO & sub-2s load speed",
-      "Dedicated database architecture",
-      "Hardened against the OWASP Top 10",
-      "Priority same-day bug support & code audits",
+      "Up to 10 pages",
+      "Blog or simple content management",
+      "Contact forms and analytics setup",
+      "Technical and on-page SEO foundations",
+      "Deployment and handover",
+      "3 review rounds and 30-day defect fixes",
     ],
-    cta: "Accelerate growth",
-    status: "CONFIRMED",
-    mostPopular: true,
+    care: "Optional maintenance from KES 10,000/month",
+    featured: true,
   },
   {
-    name: "Custom Enterprise",
-    id: "tier-enterprise",
-    setup: "Custom",
-    monthly: "Custom",
+    name: "Custom Web Application",
+    price: "From KES 180,000",
+    priceNote: "scoped to your requirements",
     description:
-      "Bespoke, high-performance architecture engineered for volume and scale.",
+      "Purpose-built software for custom workflows, portals, dashboards, and integrations.",
     features: [
-      "Multi-platform ecosystems & API development",
-      "Full payment gateway redundancy & ledgering",
-      "Enterprise data models & sharded databases",
-      "Continuous penetration testing & encryption",
-      "Dedicated dev support SLA & system audits",
-      "Custom microservices & DevOps pipelines",
+      "Discovery and written project scope",
+      "Architecture and milestone plan",
+      "User accounts, dashboards, or workflows as scoped",
+      "Database and API integrations as scoped",
+      "Deployment and technical handover",
+      "Testing and post-launch fixes for agreed deliverables",
     ],
-    cta: "Talk to the architecture team",
-    status: "QUOTE",
-    mostPopular: false,
+    care: "Ongoing support quoted separately",
   },
 ];
 
 const included = [
   {
     icon: Code2,
-    title: "Next.js framework",
-    body: "Server-side rendered architecture, built for immediate load speeds.",
+    title: "Clear scope",
+    body: "Pages, features, review rounds, and exclusions are written into your proposal.",
   },
   {
     icon: Wallet,
-    title: "Daraja 2.0 webhooks",
-    body: "Instant delivery confirmations and secure programmatic ledgers.",
+    title: "Agreed milestones",
+    body: "You see the payment schedule before work starts, with progress tied to deliverables.",
   },
   {
     icon: Database,
-    title: "Encrypted schemas",
-    body: "MongoDB configurations designed defensively against leaks.",
+    title: "Practical handover",
+    body: "Launch and access handover are included in the scope of each build package.",
   },
   {
     icon: ShieldCheck,
-    title: "OWASP hardening",
-    body: "Continuous protection against injection attacks and payload tampering.",
+    title: "Defined support",
+    body: "Defect fixes and optional maintenance are described separately from new feature work.",
+  },
+];
+
+const carePlans = [
+  {
+    name: "Essential Care",
+    price: "From KES 5,000 / month",
+    items: ["Routine dependency updates", "Backup checks", "Up to 1 hour of minor updates"],
+  },
+  {
+    name: "Priority Care",
+    price: "From KES 10,000 / month",
+    items: ["Essential Care coverage", "Up to 3 hours of minor updates", "Monthly site health summary"],
   },
 ];
 
 const faqs = [
   {
-    question: "Why is there a setup fee and a monthly fee?",
+    question: "Is monthly maintenance required?",
     answer:
-      "The setup fee covers the initial engineering, architecture design, and integration of your product. The monthly fee covers secure hosting, database maintenance, API monitoring (including Daraja status checks), and ongoing bug support.",
+      "No. Build prices are one-time project fees. Maintenance is optional and can be added if you want ongoing updates and support.",
   },
   {
-    question: "Can we upgrade from Micro to Growth Macro later?",
+    question: "What is not included in these prices?",
     answer:
-      "Yes. Every tier is built on the same modular Next.js and Node.js architecture, so your codebase scales naturally as your transaction volume grows — no rebuild required.",
+      "Domain registration, hosting, paid software, stock assets, copywriting, and third-party service fees are excluded unless your proposal specifically includes them. Any extra cost is discussed before approval.",
   },
   {
-    question: "How secure is the M-Pesa API integration?",
+    question: "Are payment integrations included?",
     answer:
-      "We follow Daraja 2.0 best practices: secure backend webhooks, signature validation on every callback, and encrypted transaction payloads. API keys live only in isolated environment variables, never in client code.",
+      "M-Pesa, card, and other payment integrations are scoped separately because provider requirements and testing vary by project. The proposal will show any integration fee before work begins.",
   },
   {
-    question: "What counts as a 'bug' under support?",
+    question: "How does the 50/30/20 payment schedule work?",
     answer:
-      "Any defect in code we shipped — broken flows, failed callbacks, integration errors. New feature requests are scoped and quoted separately from maintenance.",
+      "Unless the written proposal says otherwise, 50% is due before work begins, 30% at the agreed project milestone, and the final 20% at completion before final handover or production launch.",
+  },
+  {
+    question: "Can I get a quote in another currency?",
+    answer:
+      "Yes. For clients outside Kenya, the proposal can state an agreed currency and any payment processing costs before you approve the project.",
   },
 ];
 
-function PriceLedger({ label, value, isSuffix }) {
-  return (
-    <div className="flex items-baseline justify-between">
-      <span
-        className="text-xs uppercase tracking-widest"
-        style={{ color: "#6B7A72", fontFamily: "'IBM Plex Mono', monospace" }}
-      >
-        {label}
-      </span>
-      <span
-        className="text-right"
-        style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          color: "#0B2545",
-          fontWeight: 600,
-        }}
-      >
-        {value}
-        {isSuffix && (
-          <span className="text-xs font-normal" style={{ color: "#6B7A72" }}>
-            {" "}
-            /mo
-          </span>
-        )}
-      </span>
-    </div>
-  );
-}
+const whatsappNumber = "254758133905";
 
-const WHATSAPP_NUMBER = "+254758133905"; // international format, no leading 0/+
-
-function buildWhatsappLink(tier) {
+function quoteLink(plan) {
   const message =
-    `Hi JMMLabs, I'd like to enquire about the *${tier.name}* package.\n\n` +
-    `Setup: ${tier.setup}\n` +
-    `Maintenance: ${tier.monthly}${tier.monthly !== "Custom" ? "/mo" : ""}\n\n` +
-    `Please get in touch with more details.`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    "Hello JMM Labs, I would like a quote for the " +
+    plan.name +
+    " package (" +
+    plan.price +
+    "). Please let me know what information you need.";
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-function PricingCard({ tier }) {
-  const [hovered, setHovered] = useState(false);
-  const accent = tier.mostPopular ? "#00A651" : "#0B2545";
-
+function PricingCard({ plan }) {
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative flex flex-col rounded-3xl transition-all duration-300"
-      style={{
-        background: "#FFFFFF",
-        border: tier.mostPopular ? "1.5px solid #00A651" : "1px solid #DDE3DC",
-        boxShadow: hovered
-          ? "0 20px 40px -20px rgba(11,37,69,0.25)"
-          : tier.mostPopular
-            ? "0 12px 30px -18px rgba(0,166,81,0.35)"
-            : "0 4px 14px -10px rgba(11,37,69,0.15)",
-        transform:
-          hovered || tier.mostPopular ? "translateY(-4px)" : "translateY(0)",
-      }}
+    <article
+      className={`relative flex h-full flex-col rounded-3xl border bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7 ${
+        plan.featured
+          ? "border-blue-500 shadow-blue-900/10 ring-1 ring-blue-500"
+          : "border-slate-200"
+      }`}
     >
-      {/* perforated receipt edge */}
-      <div
-        className="absolute -top-2 left-6 right-6 h-4"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #F6F8F6 3px, transparent 3.5px)",
-          backgroundSize: "16px 16px",
-          backgroundPosition: "0 -8px",
-        }}
-      />
-
-      <div className="p-8 flex-1">
-        <div className="flex items-center justify-between mb-5">
-          <h3
-            className="text-xl font-bold"
-            style={{
-              color: "#0B2545",
-              fontFamily: "'Space Grotesk', sans-serif",
-            }}
-          >
-            {tier.name}
-          </h3>
-          <span
-            className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full"
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              color: tier.mostPopular ? "#FFFFFF" : accent,
-              background: tier.mostPopular ? "#00A651" : "#F0F3EF",
-            }}
-          >
-            {tier.status}
-          </span>
-        </div>
-
-        <p
-          className="text-sm leading-relaxed mb-6"
-          style={{ color: "#5B6A63" }}
-        >
-          {tier.description}
+      {plan.featured && (
+        <span className="absolute -top-3 left-6 rounded-full bg-blue-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+          Most requested
+        </span>
+      )}
+      <div>
+        <h3 className="text-xl font-bold text-slate-950">{plan.name}</h3>
+        <p className="mt-2 min-h-12 text-sm leading-6 text-slate-600">{plan.description}</p>
+        <p className="mt-5 text-3xl font-black tracking-tight text-blue-800 sm:text-[2rem]">
+          {plan.price}
         </p>
-
-        {/* Ledger-style price block */}
-        <div
-          className="rounded-2xl p-5 mb-7 space-y-2"
-          style={{
-            background: "#F6F8F6",
-            border: "1px dashed #C9D2C6",
-          }}
-        >
-          <PriceLedger label="Setup" value={tier.setup} />
-          <div style={{ borderTop: "1px dashed #C9D2C6" }} />
-          <PriceLedger
-            label="Maintenance"
-            value={tier.monthly}
-            isSuffix={tier.monthly !== "Custom"}
-          />
-        </div>
-
-        <ul className="space-y-3.5 mb-2">
-          {tier.features.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-start gap-3 text-sm"
-              style={{ color: "#3A463F" }}
-            >
-              <span
-                className="mt-0.5 rounded-full p-0.5 flex-shrink-0"
-                style={{
-                  background: tier.mostPopular ? "#E7F7EE" : "#EEF1ED",
-                  color: accent,
-                }}
-              >
-                <Check className="w-3.5 h-3.5" strokeWidth={3} />
+        <p className="mt-1 text-xs font-medium text-slate-500">{plan.priceNote}</p>
+        <ul className="mt-6 space-y-3 border-t border-slate-100 pt-5">
+          {plan.features.map((feature) => (
+            <li key={feature} className="flex items-start gap-2.5 text-sm leading-5 text-slate-700">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                <Check size={12} strokeWidth={3} />
               </span>
-              <span>{feature}</span>
+              {feature}
             </li>
           ))}
         </ul>
       </div>
-
-      <div className="p-8 pt-0">
+      <div className="mt-auto pt-6">
+        <p className="mb-4 text-xs font-semibold leading-5 text-slate-500">{plan.care}</p>
         <a
-          href={buildWhatsappLink(tier)}
+          href={quoteLink(plan)}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 group transition-colors duration-200"
-          style={{
-            background: tier.mostPopular ? "#00A651" : "#0B2545",
-            color: "#FFFFFF",
-            fontFamily: "'Space Grotesk', sans-serif",
-            textDecoration: "none",
-          }}
+          className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-3.5 text-sm font-bold text-white transition hover:bg-blue-800"
         >
-          <MessageCircle className="w-4 h-4" />
-          {tier.cta}
-          <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+          <MessageCircle size={16} />
+          Ask for a quote
+          <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
         </a>
-        <p
-          className="text-center text-xs mt-3"
-          style={{ color: "#8A968F", fontFamily: "'IBM Plex Mono', monospace" }}
-        >
-          Opens WhatsApp with this package pre-filled
-        </p>
       </div>
-    </div>
+    </article>
   );
 }
 
-function FaqItem({ item, isOpen, onToggle }) {
+function FaqItem({ item, isOpen, onToggle, index }) {
+  const answerId = `pricing-answer-${index}`;
   return (
-    <div style={{ borderBottom: "1px solid #DDE3DC" }}>
-      <button
-        onClick={onToggle}
-        className="w-full py-5 flex items-center justify-between gap-4 text-left"
-      >
-        <span
-          className="font-semibold text-base"
-          style={{
-            color: "#0B2545",
-            fontFamily: "'Space Grotesk', sans-serif",
-          }}
+    <div className="border-b border-slate-200">
+      <h3>
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={isOpen}
+          aria-controls={answerId}
+          className="flex w-full items-center justify-between gap-4 py-5 text-left text-sm font-bold text-slate-900 sm:text-base"
         >
           {item.question}
-        </span>
-        <ChevronDown
-          className="w-5 h-5 flex-shrink-0 transition-transform duration-300"
-          style={{
-            color: "#00A651",
-            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-          }}
-        />
-      </button>
-      <div
-        className="overflow-hidden transition-all duration-300"
-        style={{ maxHeight: isOpen ? "220px" : "0px" }}
-      >
-        <p
-          className="pb-5 text-sm leading-relaxed"
-          style={{ color: "#5B6A63" }}
-        >
-          {item.answer}
-        </p>
+          <ChevronDown
+            size={19}
+            className={`shrink-0 text-blue-700 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+      </h3>
+      <div id={answerId} hidden={!isOpen} className="pb-5 text-sm leading-6 text-slate-600">
+        {item.answer}
       </div>
     </div>
   );
@@ -341,167 +220,134 @@ export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
-    <div
-      className="min-h-screen antialiased mt-30"
-      style={{ background: "#F6F8F6", color: "#0B2545" }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@500;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-      `}</style>
-
-      {/* Header */}
-      <section
-        className="py-20 px-6"
-        style={{ background: "#FFFFFF", borderBottom: "1px solid #DDE3DC" }}
-      >
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 bg-blue-100 text-blue-600">
-            <Terminal className="w-3.5 h-3.5" />
-            <span
-              className="text-xs font-bold uppercase tracking-widest"
-              style={{ fontFamily: "'IBM Plex Mono', monospace" }}
-            >
-              jmmlabs // rate card
-            </span>
-          </div>
-          <h1
-            className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              color: "#0B2545",
-            }}
-          >
-            Transparent pricing,
-            <br />
-            <span className="text-blue-600">built to drive revenue.</span>
+    <main className="min-h-screen bg-slate-50 pt-[76px] font-sans text-slate-900">
+      <header className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3.5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-800">
+            Straightforward project pricing
+          </p>
+          <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            Clear scope. Fair fees.{" "}
+            <span className="text-blue-700">No surprise retainers.</span>
           </h1>
-          <p className="text-lg max-w-2xl mx-auto leading-relaxed">
-            Fair engineering rates that protect your cash flow, while we deploy
-            premium, hardened codebases for your business.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+            Pay for the work your project needs. Every quote spells out the
+            deliverables, payment milestones, and any optional ongoing care
+            before you commit.
           </p>
         </div>
-      </section>
+      </header>
 
-      {/* Pricing cards */}
-      <section className="py-20 max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          {tiers.map((tier) => (
-            <PricingCard key={tier.id} tier={tier} />
+      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10">
+        <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {plans.map((plan) => (
+            <PricingCard key={plan.name} plan={plan} />
           ))}
         </div>
+        <p className="mt-5 text-center text-xs leading-5 text-slate-500">
+          Prices are starting points in KES. Hosting, domain names, licenses,
+          third-party fees, and out-of-scope requests are quoted separately.
+          For international projects, currency and payment costs are confirmed
+          in the proposal.
+        </p>
       </section>
 
-      {/* What's included */}
-      <section className="py-16 px-6">
-        <div
-          className="max-w-6xl mx-auto rounded-3xl p-10 md:p-14"
-          style={{ background: "#FFFFFF", border: "1px solid #DDE3DC" }}
-        >
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2
-              className="text-3xl font-bold"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                color: "#0B2545",
-              }}
-            >
-              Engineering standards, every tier
-            </h2>
+      <section className="px-5 pb-8 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-9">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Optional, clearly scoped</p>
+              <h2 className="mt-2 text-2xl font-black text-slate-950 sm:text-3xl">
+                Ongoing website care
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                Maintenance is separate from the build. You can manage updates
+                yourself or choose a plan with a defined monthly time allowance.
+              </p>
+            </div>
+            <p className="text-xs leading-5 text-slate-500 md:max-w-xs">
+              Plans cover software care, not hosting, domains, paid tools, or
+              new feature development.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {included.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="flex gap-4">
-                <div
-                  className="p-3 rounded-xl h-fit flex-shrink-0"
-                  style={{ background: "#E7F7EE", color: "#00A651" }}
-                >
-                  <Icon className="w-5 h-5" />
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {carePlans.map((plan) => (
+              <article key={plan.name} className="rounded-2xl bg-slate-50 p-5 sm:p-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="font-bold text-slate-900">{plan.name}</h3>
+                  <p className="text-sm font-bold text-blue-800">{plan.price}</p>
                 </div>
-                <div>
-                  <h4
-                    className="font-semibold mb-1 text-sm"
-                    style={{ color: "#0B2545" }}
-                  >
-                    {title}
-                  </h4>
-                  <p
-                    className="text-xs leading-relaxed"
-                    style={{ color: "#5B6A63" }}
-                  >
-                    {body}
-                  </p>
-                </div>
-              </div>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {plan.items.map((item) => (
+                    <li key={item} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2
-            className="text-3xl font-bold text-center mb-10"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              color: "#0B2545",
-            }}
-          >
-            Common questions
+      <section className="px-5 py-12 sm:px-8 sm:py-16 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {included.map(({ icon: Icon, title, body }) => (
+            <article key={title} className="rounded-2xl border border-slate-200 bg-white p-5">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                <Icon size={20} />
+              </span>
+              <h3 className="mt-4 font-bold text-slate-900">{title}</h3>
+              <p className="mt-2 text-sm leading-5 text-slate-600">{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-5 py-12 sm:px-8 sm:py-16 lg:px-10">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-center text-3xl font-black tracking-tight text-slate-950">
+            Pricing questions
           </h2>
-          <div>
-            {faqs.map((item, i) => (
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 sm:px-7">
+            {faqs.map((item, index) => (
               <FaqItem
                 key={item.question}
                 item={item}
-                isOpen={openFaq === i}
-                onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+                index={index}
+                isOpen={openFaq === index}
+                onToggle={() => setOpenFaq(openFaq === index ? -1 : index)}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6">
-        <div
-          className="max-w-4xl mx-auto rounded-3xl p-12 md:p-16 text-center"
-          style={{ background: "#0B2545" }}
-        >
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              color: "#FFFFFF",
-            }}
+      <section className="px-5 pb-16 pt-4 sm:px-8 sm:pb-20 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-3xl bg-blue-800 p-7 text-white sm:p-10 md:flex-row md:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-200">Need a different scope?</p>
+            <h2 className="mt-2 text-2xl font-black sm:text-3xl">Let’s work out a fair quote.</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-100">
+              Share your goals and constraints. We’ll propose a practical scope
+              and milestone plan before any work begins.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
           >
-            Ready to ship a hardened, revenue-ready app?
-          </h2>
-          <p className="mb-8 max-w-xl mx-auto" style={{ color: "#AEB9C8" }}>
-            Tell us what you're building. We'll scope the right tier and send a
-            fixed quote within one business day.
-          </p>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-              "Hi JMMLabs, I'd like a fixed quote for a project. Here's what I'm building: ",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm"
-            style={{
-              background: "#00A651",
-              color: "#FFFFFF",
-              fontFamily: "'Space Grotesk', sans-serif",
-              textDecoration: "none",
-            }}
-          >
-            <MessageCircle className="w-4 h-4" />
-            Get a fixed quote
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            Discuss a project <ArrowRight size={16} />
+          </Link>
         </div>
+        <p className="mx-auto mt-5 max-w-7xl text-center text-xs leading-5 text-slate-500">
+          Project payments follow the 50% deposit, 30% milestone, and 20%
+          completion schedule unless your written proposal states otherwise.{" "}
+          <Link href="/terms" className="font-bold text-blue-700 hover:text-blue-900">
+            Read the service terms.
+          </Link>
+        </p>
       </section>
-    </div>
+    </main>
   );
 }

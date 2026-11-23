@@ -146,26 +146,26 @@ function PricingCard({ plan }) {
     <article
       className={`relative flex h-full flex-col rounded-3xl border bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7 ${
         plan.featured
-          ? "border-blue-500 shadow-blue-900/10 ring-1 ring-blue-500"
+          ? "border-teal-500 shadow-teal-900/10 ring-1 ring-teal-500"
           : "border-slate-200"
       }`}
     >
       {plan.featured && (
-        <span className="absolute -top-3 left-6 rounded-full bg-blue-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+        <span className="absolute -top-3 left-6 rounded-full bg-teal-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
           Most requested
         </span>
       )}
       <div>
         <h3 className="text-xl font-bold text-slate-950">{plan.name}</h3>
         <p className="mt-2 min-h-12 text-sm leading-6 text-slate-600">{plan.description}</p>
-        <p className="mt-5 text-3xl font-black tracking-tight text-blue-800 sm:text-[2rem]">
+        <p className="mt-5 text-3xl font-black tracking-tight text-teal-800 sm:text-[2rem]">
           {plan.price}
         </p>
         <p className="mt-1 text-xs font-medium text-slate-500">{plan.priceNote}</p>
         <ul className="mt-6 space-y-3 border-t border-slate-100 pt-5">
           {plan.features.map((feature) => (
             <li key={feature} className="flex items-start gap-2.5 text-sm leading-5 text-slate-700">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-700">
                 <Check size={12} strokeWidth={3} />
               </span>
               {feature}
@@ -179,7 +179,7 @@ function PricingCard({ plan }) {
           href={quoteLink(plan)}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-3.5 text-sm font-bold text-white transition hover:bg-blue-800"
+          className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-4 py-3.5 text-sm font-bold text-white transition hover:bg-teal-800"
         >
           <MessageCircle size={16} />
           Ask for a quote
@@ -205,7 +205,7 @@ function FaqItem({ item, isOpen, onToggle, index }) {
           {item.question}
           <ChevronDown
             size={19}
-            className={`shrink-0 text-blue-700 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`shrink-0 text-teal-700 transition-transform ${isOpen ? "rotate-180" : ""}`}
           />
         </button>
       </h3>
@@ -223,12 +223,12 @@ export default function PricingPage() {
     <main className="min-h-screen bg-slate-50 pt-[76px] font-sans text-slate-900">
       <header className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3.5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-800">
+          <p className="inline-flex items-center rounded-full border border-teal-100 bg-teal-50 px-3.5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-teal-800">
             Straightforward project pricing
           </p>
           <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
             Clear scope. Fair fees.{" "}
-            <span className="text-blue-700">No surprise retainers.</span>
+            <span className="text-teal-700">No surprise retainers.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             Pay for the work your project needs. Every quote spells out the
@@ -253,10 +253,10 @@ export default function PricingPage() {
       </section>
 
       <section className="px-5 pb-8 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-9">
+        <div className="mx-auto max-w-7xl rounded-3xl border border-teal-100 bg-white p-6 shadow-sm sm:p-9">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Optional, clearly scoped</p>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">Optional, clearly scoped</p>
               <h2 className="mt-2 text-2xl font-black text-slate-950 sm:text-3xl">
                 Ongoing website care
               </h2>
@@ -275,7 +275,7 @@ export default function PricingPage() {
               <article key={plan.name} className="rounded-2xl bg-slate-50 p-5 sm:p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 className="font-bold text-slate-900">{plan.name}</h3>
-                  <p className="text-sm font-bold text-blue-800">{plan.price}</p>
+                  <p className="text-sm font-bold text-teal-800">{plan.price}</p>
                 </div>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {plan.items.map((item) => (
@@ -294,7 +294,7 @@ export default function PricingPage() {
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {included.map(({ icon: Icon, title, body }) => (
             <article key={title} className="rounded-2xl border border-slate-200 bg-white p-5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
                 <Icon size={20} />
               </span>
               <h3 className="mt-4 font-bold text-slate-900">{title}</h3>
@@ -324,18 +324,18 @@ export default function PricingPage() {
       </section>
 
       <section className="px-5 pb-16 pt-4 sm:px-8 sm:pb-20 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-3xl bg-blue-800 p-7 text-white sm:p-10 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-3xl bg-teal-800 p-7 text-white sm:p-10 md:flex-row md:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-200">Need a different scope?</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-200">Need a different scope?</p>
             <h2 className="mt-2 text-2xl font-black sm:text-3xl">Let’s work out a fair quote.</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-100">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-teal-100">
               Share your goals and constraints. We’ll propose a practical scope
               and milestone plan before any work begins.
             </p>
           </div>
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-teal-800 transition hover:bg-teal-50"
           >
             Discuss a project <ArrowRight size={16} />
           </Link>
@@ -343,7 +343,7 @@ export default function PricingPage() {
         <p className="mx-auto mt-5 max-w-7xl text-center text-xs leading-5 text-slate-500">
           Project payments follow the 50% deposit, 30% milestone, and 20%
           completion schedule unless your written proposal states otherwise.{" "}
-          <Link href="/terms" className="font-bold text-blue-700 hover:text-blue-900">
+          <Link href="/terms" className="font-bold text-teal-700 hover:text-teal-900">
             Read the service terms.
           </Link>
         </p>

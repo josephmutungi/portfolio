@@ -15,6 +15,15 @@ export async function generateMetadata({ params }) {
   return {
     title: project.title,
     description: project.description,
+    alternates: {
+      canonical: `https://novastackdigital.co.ke/projects/${project.id}`,
+    },
+    openGraph: {
+      title: `${project.title} | JMM Labs`,
+      description: project.description,
+      images: [project.image],
+      type: "article",
+    },
   };
 }
 
@@ -29,14 +38,14 @@ export default async function ProjectDetailPage({ params }) {
       <div className="mx-auto max-w-6xl">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition hover:-translate-x-0.5 hover:text-blue-900"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-teal-700 transition hover:-translate-x-0.5 hover:text-teal-900"
         >
           <ArrowLeft size={16} /> Back to projects
         </Link>
 
         <header className="pb-7 pt-7 sm:pb-9 sm:pt-9">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-800">
+            <span className="rounded-full bg-teal-50 px-3 py-1.5 text-xs font-bold text-teal-800">
               {project.category}
             </span>
             <span className="text-sm text-slate-500">{project.year}</span>
@@ -62,7 +71,7 @@ export default async function ProjectDetailPage({ params }) {
 
         <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.72fr]">
           <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
               Project overview
             </p>
             <h2 className="mt-2 text-2xl font-black text-slate-950">
@@ -74,7 +83,7 @@ export default async function ProjectDetailPage({ params }) {
           </section>
 
           <aside className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
               Project details
             </h2>
             <p className="mt-2 text-sm text-slate-500">Category</p>
@@ -95,18 +104,18 @@ export default async function ProjectDetailPage({ params }) {
           </aside>
         </div>
 
-        <section className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl bg-blue-800 p-6 text-white sm:p-8 md:flex-row md:items-center">
+        <section className="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl bg-teal-800 p-6 text-white sm:p-8 md:flex-row md:items-center">
           <div>
             <h2 className="text-xl font-black sm:text-2xl">
               Have a similar challenge?
             </h2>
-            <p className="mt-2 text-sm leading-6 text-blue-100">
+            <p className="mt-2 text-sm leading-6 text-teal-100">
               Tell us what you’re trying to build and we’ll discuss the scope.
             </p>
           </div>
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-teal-800 transition hover:bg-teal-50"
           >
             Discuss your project <ArrowRight size={16} />
           </Link>

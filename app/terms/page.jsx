@@ -57,7 +57,7 @@ export default function TermsPage() {
     <main className="min-h-screen bg-slate-50 px-5 pb-20 pt-28 sm:px-8 sm:pt-32">
       <div className="mx-auto max-w-4xl">
         <header className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-10">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
             JMM Labs · Service information
           </p>
           <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
@@ -70,7 +70,7 @@ export default function TermsPage() {
           </p>
         </header>
 
-        <section className="mt-6 rounded-3xl border border-blue-100 bg-blue-50/70 p-6 sm:p-8">
+        <section className="mt-6 rounded-3xl border border-teal-100 bg-teal-50/70 p-6 sm:p-8">
           <h2 className="text-xl font-bold text-slate-900">Standard project payment schedule</h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {[
@@ -78,8 +78,8 @@ export default function TermsPage() {
               ["30%", "At the agreed project milestone"],
               ["20%", "On completion, before final handover or launch"],
             ].map(([amount, milestone]) => (
-              <div key={amount} className="rounded-2xl border border-blue-100 bg-white p-5">
-                <p className="text-3xl font-black text-blue-700">{amount}</p>
+              <div key={amount} className="rounded-2xl border border-teal-100 bg-white p-5">
+                <p className="text-3xl font-black text-teal-700">{amount}</p>
                 <p className="mt-2 text-sm leading-5 text-slate-600">{milestone}</p>
               </div>
             ))}
@@ -101,7 +101,7 @@ export default function TermsPage() {
 
         <p className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
           Questions about a project or partner listing?{" "}
-          <Link href="/contact" className="font-bold text-blue-700 hover:text-blue-900">
+          <Link href="/contact" className="font-bold text-teal-700 hover:text-teal-900">
             Contact JMM Labs
           </Link>{" "}
           and we’ll confirm the applicable terms in writing.

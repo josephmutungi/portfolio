@@ -97,7 +97,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-slate-50 px-4 pb-16 pt-28 font-sans text-slate-900 sm:px-6 sm:pb-20 sm:pt-32">
       <div className="mx-auto max-w-7xl">
         <header className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
             Contact JMM Labs
           </p>
           <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
@@ -117,7 +117,7 @@ export default function ContactPage() {
             className="space-y-4"
           >
             <div className="rounded-3xl bg-slate-950 p-6 text-white sm:p-8">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300">
                 <MessageCircle size={22} />
               </span>
               <h2 className="mt-5 text-xl font-bold">
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 href="https://wa.me/254758133905"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-600"
+                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-teal-600"
               >
                 Message us on WhatsApp <ArrowUpRight size={15} />
               </a>
@@ -145,9 +145,9 @@ export default function ContactPage() {
                     href={href}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
-                    className="group flex min-w-0 items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:shadow-md"
+                    className="group flex min-w-0 items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-teal-200 hover:shadow-md"
                   >
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-700 group-hover:text-white">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 transition group-hover:bg-teal-700 group-hover:text-white">
                       <Icon size={19} />
                     </span>
                     <span className="min-w-0">
@@ -163,11 +163,11 @@ export default function ContactPage() {
               )}
             </div>
 
-            <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-5">
               <div className="flex items-start gap-3">
                 <Building2
                   size={19}
-                  className="mt-0.5 shrink-0 text-blue-700"
+                  className="mt-0.5 shrink-0 text-teal-700"
                 />
                 <div>
                   <h2 className="font-bold text-slate-900">
@@ -179,7 +179,7 @@ export default function ContactPage() {
                   </p>
                   <Link
                     href="/terms"
-                    className="mt-2 inline-block text-xs font-bold text-blue-700 hover:text-blue-900"
+                    className="mt-2 inline-block text-xs font-bold text-teal-700 hover:text-teal-900"
                   >
                     Read the service terms
                   </Link>
@@ -195,7 +195,7 @@ export default function ContactPage() {
             className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8 lg:p-10"
           >
             <div className="mb-7">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
                 Send an enquiry
               </p>
               <h2 className="mt-2 text-2xl font-black text-slate-950">
@@ -208,7 +208,7 @@ export default function ContactPage() {
                 role={status.type === "error" ? "alert" : "status"}
                 className={`mb-6 rounded-xl border p-4 text-sm font-medium ${
                   status.type === "success"
-                    ? "border-blue-100 bg-blue-50 text-blue-800"
+                    ? "border-teal-100 bg-teal-50 text-teal-800"
                     : "border-slate-200 bg-slate-100 text-slate-700"
                 }`}
               >
@@ -237,7 +237,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder="Jane Doe"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
                   />
                 </div>
                 <div>
@@ -256,7 +256,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder="jane@company.com"
                     required
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
                   />
                 </div>
               </div>
@@ -275,13 +275,13 @@ export default function ContactPage() {
                   rows={6}
                   placeholder="Tell us what you're looking for, your timeline, and whether this is a project or partner listing enquiry."
                   required
-                  className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm leading-6 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                  className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm leading-6 outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-900/10 transition hover:bg-blue-800 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-teal-900/10 transition hover:bg-teal-800 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
               >
                 {loading ? "Sending…" : "Send enquiry"}
                 <Send

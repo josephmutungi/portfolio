@@ -37,7 +37,7 @@ export default function Testimonials() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="mb-10 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">Client feedback</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">Client feedback</p>
             <h2 className="mt-3 max-w-2xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
               Good work is remembered.
             </h2>
@@ -45,7 +45,7 @@ export default function Testimonials() {
               A few words from people who have worked with JMM Labs.
             </p>
           </div>
-          <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-blue-700 transition hover:gap-3">
+          <Link href="/contact" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-teal-700 transition hover:gap-3">
             Work with us <ArrowRight size={16} />
           </Link>
         </div>
@@ -61,12 +61,12 @@ export default function Testimonials() {
               className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/70"
             >
               <div className="flex items-center justify-between">
-                <span className="flex gap-1 text-blue-600" aria-label="5 out of 5 stars">
+                <span className="flex gap-1 text-teal-600" aria-label="5 out of 5 stars">
                   {[...Array(5)].map((_, star) => (
                     <Star key={star} size={14} fill="currentColor" strokeWidth={1.5} aria-hidden="true" />
                   ))}
                 </span>
-                <Quote size={20} className="text-blue-100" aria-hidden="true" />
+                <Quote size={20} className="text-teal-100" aria-hidden="true" />
               </div>
               <blockquote className="mt-5 flex-1 text-sm leading-6 text-slate-600">
                 “{testimonial.content}”

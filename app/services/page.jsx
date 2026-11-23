@@ -20,63 +20,63 @@ const services = [
     title: "Full-Stack Web Development",
     description:
       "Building scalable, high-performance web applications using Next.js, React, and Node.js. Optimized for speed and user experience.",
-    icon: <Code2 className="w-8 h-8 text-blue-600" />,
+    icon: <Code2 className="w-8 h-8 text-teal-600" />,
     tags: ["Next.js", "Express", "Tailwind"],
   },
   {
     title: "M-Pesa API Integration",
     description:
       "Seamlessly integrate Daraja 2.0 for automated payment processing, STK Push, and C2B/B2C transactions in your Kenyan business.",
-    icon: <Wallet className="w-8 h-8 text-blue-600" />,
+    icon: <Wallet className="w-8 h-8 text-teal-600" />,
     tags: ["Payments", "Daraja API", "Automation"],
   },
   {
     title: "SEO & Performance Optimization",
     description:
       "Technical SEO and performance improvements that make websites easier to find, quicker to use, and ready for customers in local and international markets.",
-    icon: <Search className="w-8 h-8 text-blue-600" />,
+    icon: <Search className="w-8 h-8 text-teal-600" />,
     tags: ["Core Web Vitals", "SSR", "SEO"],
   },
   {
     title: "Database Architecture",
     description:
       "Designing robust, secure, and scalable data models using MongoDB and Mongoose for complex property or inventory systems.",
-    icon: <Database className="w-8 h-8 text-blue-600" />,
+    icon: <Database className="w-8 h-8 text-teal-600" />,
     tags: ["MongoDB", "Mongoose", "Schemas"],
   },
   {
     title: "Cybersecurity & Hardening",
     description:
       "Protecting your digital assets with JWT authentication, data encryption, and protection against OWASP top 10 vulnerabilities.",
-    icon: <ShieldCheck className="w-8 h-8 text-blue-600" />,
+    icon: <ShieldCheck className="w-8 h-8 text-teal-600" />,
     tags: ["Auth", "Encryption", "Security"],
   },
   {
     title: "Bug Fixing & JS Support",
     description:
       "Rapid troubleshooting of complex JavaScript/TypeScript memory leaks, logic errors, and integration bottlenecks.",
-    icon: <BugOff className="w-8 h-8 text-blue-600" />,
+    icon: <BugOff className="w-8 h-8 text-teal-600" />,
     tags: ["Debugging", "Code Audit", "Testing"],
   },
   {
     title: "Business Profile Setup",
     description:
       "Set up or improve your Google Business Profile and relevant directory listings with accurate business details and a consistent brand presence.",
-    icon: <Building2 className="w-8 h-8 text-blue-600" />,
+    icon: <Building2 className="w-8 h-8 text-teal-600" />,
     tags: ["Business Listings", "Local SEO", "Profile Setup"],
   },
   {
     title: "Operating System Installation",
     description:
       "Installation and initial setup of supported operating systems for personal and business computers, including drivers, updates, and essential configuration. A valid software license must be supplied or purchased separately where required.",
-    icon: <MonitorCog className="w-8 h-8 text-blue-600" />,
+    icon: <MonitorCog className="w-8 h-8 text-teal-600" />,
     tags: ["Windows", "Linux", "Computer Setup"],
   },
   {
     title: "IT Partnership Listings",
     description:
       "IT professionals and businesses can enquire about a paid partnership or directory feature on our website. Placement scope and fees are agreed in writing before publication.",
-    icon: <Handshake className="w-8 h-8 text-blue-600" />,
+    icon: <Handshake className="w-8 h-8 text-teal-600" />,
     tags: ["Partner Network", "Paid Listing", "IT Services"],
   },
 ];
@@ -113,9 +113,9 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl sm:p-7"
+              className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl sm:p-7"
             >
-              <div className="mb-5 w-fit rounded-xl bg-blue-50 p-3.5 transition-colors group-hover:bg-blue-100">
+              <div className="mb-5 w-fit rounded-xl bg-teal-50 p-3.5 transition-colors group-hover:bg-teal-100">
                 {service.icon}
               </div>
               <h3 className="mb-3 text-xl font-bold leading-snug text-slate-950">
@@ -142,17 +142,17 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden rounded-3xl bg-blue-800 px-6 py-10 text-center text-white shadow-xl sm:px-10 sm:py-14">
+          <div className="relative overflow-hidden rounded-3xl bg-teal-800 px-6 py-10 text-center text-white shadow-xl sm:px-10 sm:py-14">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
             <h2 className="mb-4 text-2xl font-black sm:text-3xl md:text-4xl">
               Ready to scale your digital presence?
             </h2>
-            <p className="mx-auto mb-7 max-w-2xl text-sm leading-6 text-blue-100 sm:text-base sm:leading-7">
+            <p className="mx-auto mb-7 max-w-2xl text-sm leading-6 text-teal-100 sm:text-base sm:leading-7">
               We work remotely with clients in Kenya, Germany, the United
               States, Canada, the UK, and other European countries. Have an IT
               service to offer? Ask us about a paid partner listing.
             </p>
-            <Link href="/contact" className="inline-flex max-w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 shadow-lg transition-colors hover:bg-blue-50 sm:px-7">
+            <Link href="/contact" className="inline-flex max-w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-teal-800 shadow-lg transition-colors hover:bg-teal-50 sm:px-7">
               Discuss a project or partnership
             </Link>
           </div>

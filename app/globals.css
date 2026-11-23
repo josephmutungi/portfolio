@@ -1,11 +1,82 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: light;
+  --ink: #10213d;
+  --muted-ink: #52627a;
+  --brand: #126b68;
+  --brand-dark: #0b4f50;
+  --brand-soft: #e6f5f1;
+  --surface: #f6f8fb;
+}
+
+html.dark {
+  color-scheme: dark;
+  --ink: #e5edf7;
+  --muted-ink: #a9b7ca;
+  --surface: #111b2b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  margin: 0;
+  background: white;
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html.dark body { background: #0b1220; color: var(--ink); }
+::selection { background: #bceee1; color: #10213d; }
+a { text-underline-offset: 3px; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+/* Tailwind utility color overrides keep existing page components theme-aware. */
+html.dark .bg-white,
+html.dark .bg-white\/90,
+html.dark .bg-white\/95 { background-color: #111b2b !important; }
+html.dark .theme-logo-surface { background-color: #fff !important; }
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/70 { background-color: #0e1726 !important; }
+html.dark .bg-slate-100 { background-color: #1a2638 !important; }
+html.dark .bg-teal-50,
+html.dark .bg-teal-50\/80 { background-color: #102c2d !important; }
+html.dark .bg-teal-100 { background-color: #16403e !important; }
+html.dark .text-slate-950,
+html.dark .text-slate-900,
+html.dark .text-slate-800 { color: #edf3fb !important; }
+html.dark .text-slate-700 { color: #d0dae8 !important; }
+html.dark .text-slate-600,
+html.dark .text-slate-500 { color: #a9b7ca !important; }
+html.dark .text-slate-400 { color: #8292a9 !important; }
+html.dark .text-teal-700,
+html.dark .text-teal-800,
+html.dark .text-teal-900 { color: #67d8c0 !important; }
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80 { border-color: #29374b !important; }
+html.dark .border-teal-100,
+html.dark .border-teal-200 { border-color: #245451 !important; }
+html.dark .ring-slate-200\/70 { --tw-ring-color: rgb(71 85 105 / 0.7); }
+html.dark input,
+html.dark textarea,
+html.dark select { color-scheme: dark; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @layer components {
   .primary-button {
-    @apply p-2 bg-sky-600 hover:bg-sky-700 text-gray-100 font-bold rounded-md;
+    @apply rounded-xl bg-teal-700 px-5 py-3 font-bold text-white transition hover:bg-teal-800;
   }
 
   .secondary-button {
-    @apply p-2 bg-gray-800 hover:bg-gray-900 text-gray-100 font-bold rounded-md;
+    @apply rounded-xl border border-slate-200 bg-white px-5 py-3 font-bold text-slate-800 transition hover:border-teal-200 hover:bg-teal-50;
   }
 }

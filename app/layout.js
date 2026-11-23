@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,29 +18,30 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "JMM Labs | Web Design & Software Development",
-    template: "%s | Jmmlabs",
+    default: "JMM Labs | Web Design & Software Development in Nairobi",
+    template: "%s | JMM Labs",
   },
   description:
-    "JMM Labs builds websites, custom software, and business IT solutions for clients in Kenya, Germany, the United States, Canada, and Europe.",
+    "Nairobi based web design and software development studio building business websites, custom web apps, e-commerce and M-Pesa integrations for growing businesses in Kenya.",
   keywords: [
     "web development company Kenya",
     "software development Nairobi",
-    "web design Germany",
-    "custom software development USA",
-    "web development Canada",
-    "software developers Europe",
-    "business IT support",
-    "business profile setup",
-    "operating system installation",
+    "web design Nairobi",
+    "website design company Kenya",
+    "custom web application development Kenya",
+    "ecommerce website development Kenya",
+    "Next.js developers Kenya",
+    "M-Pesa Daraja API integration",
+    "technical SEO services Kenya",
+    "website maintenance Nairobi",
     "M-Pesa integration Kenya",
     "JMMLabs",
   ],
   metadataBase: new URL("https://novastackdigital.co.ke"),
   openGraph: {
-    title: "JMM Labs | Web Design & Software Development",
+    title: "JMM Labs | Web Design & Software Development in Nairobi",
     description:
-      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
+      "Nairobi based web design and software development studio building business websites, custom web apps, e-commerce and M-Pesa integrations.",
     url: "https://novastackdigital.co.ke",
     siteName: "JMM Labs",
     images: [
@@ -55,10 +57,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JMM Labs | Web Design & Software Development",
+    title: "JMM Labs | Web Design & Software Development in Nairobi",
     description:
-      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
-    images: ["/preview.png"],
+      "Business websites, custom web apps, e-commerce and M-Pesa integrations from a Nairobi based digital studio.",
+    images: ["/hero.png"],
   },
   robots: {
     index: true,
@@ -68,13 +70,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 font-serif`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
 
         {/* Organization Structured Data */}
         <script
@@ -85,14 +87,14 @@ export default function RootLayout({ children }) {
               "@type": "Organization",
               name: "Jmmlabs",
               url: "https://novastackdigital.co.ke",
-              logo: "https://novastackdigital.co.ke/jmmlabslogo.png",
-              sameAs: ["https://github.com/mutungimuithi"],
+              logo: "https://novastackdigital.co.ke/jmm-labs-icon.svg",
+              sameAs: ["https://github.com/josephmutungi"],
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "KE",
               },
               description:
-                "JMM Labs builds websites, custom software, and business IT solutions for clients in Kenya and international markets.",
+                "Nairobi based web design and software development studio building business websites, custom web apps, e-commerce and M-Pesa integrations.",
             }),
           }}
         />

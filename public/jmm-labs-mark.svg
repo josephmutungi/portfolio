@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 44" fill="none">
+  <rect x="1" y="1" width="42" height="42" rx="14" fill="#10213D"/>
+  <path d="M11 29V15h4l7 8 7-8h4v14h-4v-8l-7 7-7-7v8h-4Z" fill="#F8FAFC"/>
+  <circle cx="34" cy="11" r="4" fill="#56D6B1"/>
+  <text x="54" y="22" fill="#10213D" font-family="Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="-1">JMM.</text>
+  <text x="54" y="34" fill="#52627A" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="2.4">LABS</text>
+</svg>

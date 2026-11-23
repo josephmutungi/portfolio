@@ -3,35 +3,33 @@ import Testimonials from "@/components/Testimonials";
 import { HomeAbout, HomeServices } from "@/components/HomeSections";
 
 export const metadata = {
-  title: "JMMLabs | Web Design & Software Development",
+  title: "Web Design & Software Development in Nairobi",
   description:
-    "JMM Labs builds websites, custom software, and business IT solutions for clients in Kenya, Germany, the US, Canada, and Europe.",
+    "Need a business website or custom web app? JMM Labs is a Nairobi web design and software development studio for growing businesses across Kenya.",
   keywords: [
     "web development company Kenya",
     "software development Nairobi",
-    "custom software development Germany",
-    "web design company USA",
-    "web development services Canada",
-    "software developers Europe",
-    "IT support for businesses Germany",
-    "business profile setup Kenya",
-    "operating system installation Nairobi",
-    "M-Pesa integration Kenya",
-    "IT partnership opportunities",
+    "web design Nairobi",
+    "website development Kenya",
+    "custom web application development Kenya",
+    "ecommerce website design Nairobi",
+    "M-Pesa Daraja integration Kenya",
+    "technical SEO services Nairobi",
+    "website maintenance Kenya",
     "JMMLabs",
   ],
   authors: [{ name: "JMMLabs Team" }],
   creator: "JMMLabs",
   publisher: "JMMLabs",
   openGraph: {
-    title: "JMMLabs | Web Design & Software Development",
+    title: "Web Design & Software Development in Nairobi | JMM Labs",
     description:
-      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
+      "Business websites, custom web apps, e-commerce and M-Pesa integrations for growing businesses across Kenya.",
     url: "https://novastackdigital.co.ke",
     siteName: "JMMLabs",
     images: [
       {
-        url: "/og-image.png",
+        url: "/hero.png",
         width: 1200,
         height: 630,
         alt: "JMMLabs digital product and software development",
@@ -42,10 +40,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JMMLabs | Web Design & Software Development",
+    title: "Web Design & Software Development in Nairobi | JMM Labs",
     description:
-      "Websites, custom software, and business IT solutions for clients in Kenya and international markets.",
-    images: ["/og-image.png"],
+      "Business websites, custom web apps, e-commerce and M-Pesa integrations for growing businesses across Kenya.",
+    images: ["/hero.png"],
   },
   alternates: {
     canonical: "https://novastackdigital.co.ke",
@@ -66,15 +64,22 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             name: "JMMLabs",
-            image: "https://novastackdigital.co.ke/jmmlabslogo.png",
+            image: "https://novastackdigital.co.ke/jmm-labs-icon.svg",
             url: "https://novastackdigital.co.ke",
-            telephone: "+254113822842",
+            telephone: "+254758133905",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Nairobi",
               addressCountry: "KE",
             },
-            serviceType: "Software Development, Web Design, SEO",
+            serviceType: [
+              "Web design",
+              "Web development",
+              "Custom web application development",
+              "E-commerce development",
+              "M-Pesa API integration",
+              "Technical SEO",
+            ],
             areaServed: [
               { "@type": "Country", name: "Kenya" },
               { "@type": "Country", name: "Germany" },

@@ -3,13 +3,13 @@ export const metadata = {
   description:
     "Explore JMM Labs services: custom websites and software, SEO, business profile setup, operating system installation, and paid IT partner listings.",
   keywords: [
-    "web development services Kenya",
-    "custom software Germany",
-    "web design USA",
-    "IT services Canada",
-    "business profile setup",
-    "operating system installation Nairobi",
-    "IT partner website listing",
+    "web development services Nairobi",
+    "website design company Kenya",
+    "custom software development Kenya",
+    "M-Pesa API integration Kenya",
+    "ecommerce website development Kenya",
+    "technical SEO services Nairobi",
+    "website maintenance Kenya",
   ],
   alternates: {
     canonical: "https://novastackdigital.co.ke/services",

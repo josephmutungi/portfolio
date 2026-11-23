@@ -1,175 +1,120 @@
-"use client";
-import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaGithub, FaWhatsapp } from "react-icons/fa";
+import { ArrowUpRight, Code2, Mail, MapPin, MessageCircle } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
+
+const solutionLinks = [
+  ["Business websites", "/services"],
+  ["Custom web apps", "/services"],
+  ["E-commerce development", "/services"],
+  ["M-Pesa integrations", "/services"],
+  ["SEO & performance", "/services"],
+];
+
+const companyLinks = [
+  ["About JMM Labs", "/about"],
+  ["Projects", "/projects"],
+  ["Pricing", "/pricing"],
+  ["Contact", "/contact"],
+];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Main Footer Content */}
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 pb-16">
-          {/* Brand Identity & Logo */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              <div className="relative w-[150px] h-[45px]">
-                <Image
-                  src="/jmmlabslogo.png"
-                  alt="JMM Labs Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+    <footer className="relative overflow-hidden bg-[#10213d] text-white">
+      <div
+        aria-hidden="true"
+        className="absolute -right-32 -top-40 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-7xl px-5 pb-6 pt-14 sm:px-8 sm:pt-16 lg:px-10">
+        <div className="grid gap-12 border-b border-white/10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:gap-10">
+          <div>
+            <Link href="/" aria-label="JMM Labs home" className="theme-logo-surface inline-flex rounded-lg bg-white px-3 py-2.5">
+              <BrandLogo />
             </Link>
-            <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-              JMM Labs is a premier digital engineering collective in Nairobi.
-              We craft high-performance web ecosystems designed for speed,
-              security, and market-leading SEO.
+            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-300">
+              Nairobi web design and software development for businesses ready
+              to make their next digital move.
             </p>
-            <div className="flex gap-4 mt-6">
-              <SocialIcon
-                icon={<FaGithub />}
-                label="JMM Labs on GitHub"
-                href="https://github.com/Joseh-star-dev"
-              />
-              <SocialIcon
-                icon={<FaWhatsapp />}
-                label="Contact JMM Labs on WhatsApp"
-                href="https://wa.me/254758133905"
-              />
+            <div className="mt-6 flex items-center gap-2.5">
+              <SocialLink href="https://github.com/josephmutungi" label="JMM Labs on GitHub">
+                <Code2 size={17} />
+              </SocialLink>
+              <SocialLink href="https://wa.me/254758133905" label="Message JMM Labs on WhatsApp">
+                <MessageCircle size={17} />
+              </SocialLink>
+              <SocialLink href="mailto:josehstar@gmail.com" label="Email JMM Labs">
+                <Mail size={17} />
+              </SocialLink>
             </div>
           </div>
 
-          {/* Solutions Column */}
-          <div>
-            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-blue-600 pl-3">
-              Solutions
-            </h4>
-            <ul className="space-y-4 text-sm font-semibold text-slate-500">
-              <li>
-                <FooterLink href="/services">Custom Web Apps</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">E-commerce Engines</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">UI/UX Strategy</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">SEO Domination</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">Business Profile Setup</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">Computer & OS Setup</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services">IT Partner Listings</FooterLink>
-              </li>
-            </ul>
-          </div>
+          <FooterColumn title="Services" links={solutionLinks} />
+          <FooterColumn title="Explore" links={companyLinks} />
 
-          {/* Company Column */}
           <div>
-            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-blue-700 pl-3">
-              Company
-            </h4>
-            <ul className="space-y-4 text-sm font-semibold text-slate-500">
-              <li>
-                <FooterLink href="/about">Our Story</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/projects">Portfolio</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/contact">Get in Touch</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/terms">Terms of Service</FooterLink>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact CTA */}
-          <div>
-            <h4 className="text-slate-900 font-black uppercase tracking-widest text-xs mb-6 border-l-2 border-blue-600 pl-3">
-              Let’s work together
-            </h4>
-            <p className="text-slate-500 text-sm leading-relaxed mb-5">
-              Have an idea or a challenge to solve? Tell us what you’re planning.
+            <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
+              Let’s build something useful
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-300">
+              Have a website, software, or integration project in mind? Tell us
+              what you need and we’ll discuss a practical next step.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-800"
+              className="group mt-5 inline-flex items-center gap-2 rounded-xl bg-teal-400 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-teal-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-200/50"
             >
               Start a conversation
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <div className="mt-6">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter block mb-1">
-                Office Hours
-              </span>
-              <span className="text-xs font-bold text-slate-700">
-                Mon - Fri: 09:00 - 18:00 EAT
-              </span>
-            </div>
+            <p className="mt-5 flex items-center gap-2 text-xs font-medium text-slate-400">
+              <MapPin size={14} className="text-teal-300" />
+              Nairobi, Kenya · Remote worldwide
+            </p>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col items-center md:items-start gap-1">
-            <p className="text-slate-400 text-[11px] font-bold tracking-tight">
-              © {currentYear} JMM LABS DIGITAL. ALL RIGHTS RESERVED.
-            </p>
-            <p className="text-slate-300 text-[10px] uppercase font-black tracking-widest">
-              Nairobi, Kenya • Globally Scaled
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
-                Nairobi, Kenya
-              </span>
-            </div>
-            <div className="h-4 w-px bg-slate-200"></div>
-            <p className="text-slate-400 text-[11px] font-semibold">
-              Built with Next.js
-            </p>
-          </div>
+        <div className="flex flex-col gap-3 pt-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} JMM Labs. All rights reserved.</p>
+          <Link href="/terms" className="w-fit transition hover:text-white">
+            Terms of service
+          </Link>
         </div>
       </div>
     </footer>
   );
 }
 
-// Sub-components for cleaner code
-function FooterLink({ href, children }) {
+function FooterColumn({ title, links }) {
   return (
-    <Link
-      href={href}
-      className="hover:text-blue-700 hover:translate-x-1 transition-all duration-200 inline-block"
-    >
-      {children}
-    </Link>
+    <nav aria-label={title}>
+      <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
+        {title}
+      </h2>
+      <ul className="mt-5 space-y-3">
+        {links.map(([label, href]) => (
+          <li key={label}>
+            <Link
+              href={href}
+              className="text-sm text-slate-300 transition hover:text-white focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-teal-300"
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
-function SocialIcon({ icon, href, label }) {
+function SocialLink({ href, label, children }) {
   return (
     <a
       href={href}
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-600 rounded-xl hover:bg-blue-700 hover:text-white transition-all duration-300 shadow-sm"
+      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition hover:border-teal-300/40 hover:bg-teal-300 hover:text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-200/50"
     >
-      {icon}
+      {children}
     </a>
   );
 }

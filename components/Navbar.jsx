@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
+import { useTheme } from "@/components/ThemeProvider";
 
 const links = [
   { name: "Services", path: "/services" },
@@ -17,6 +18,7 @@ const links = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
+  const { theme, toggleTheme, ready } = useTheme();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -42,16 +44,9 @@ export default function Navbar() {
             href="/"
             aria-label="JMM Labs home"
             onClick={() => setIsOpen(false)}
-            className="relative h-[62px] w-[132px] shrink-0 transition-opacity hover:opacity-80"
+            className="theme-logo-surface shrink-0 rounded-xl bg-white px-2.5 py-1.5 transition-opacity hover:opacity-80"
           >
-            <Image
-              src="/jmmlabslogo.png"
-              alt="JMM Labs"
-              fill
-              sizes="132px"
-              className="object-contain object-left"
-              priority
-            />
+            <BrandLogo />
           </Link>
 
           <div className="hidden items-center gap-0.5 rounded-full p-1 lg:flex">
@@ -65,8 +60,8 @@ export default function Navbar() {
                   aria-current={isActive ? "page" : undefined}
                   className={`relative rounded-full px-3.5 py-2 text-[13px] font-semibold transition-colors duration-200 ${
                     isActive
-                      ? "text-blue-700"
-                      : "text-slate-600 hover:text-blue-700"
+                      ? "text-teal-700"
+                      : "text-slate-600 hover:text-teal-700"
                   }`}
                 >
                   {isActive && (
@@ -82,9 +77,16 @@ export default function Navbar() {
             })}
           </div>
 
+          <ThemeToggle
+            theme={theme}
+            ready={ready}
+            onToggle={toggleTheme}
+            className="hidden lg:inline-flex"
+          />
+
           <Link
             href="/contact"
-            className="hidden items-center gap-2 rounded-full bg-blue-700 px-5 py-3 text-xs font-bold tracking-wide text-white shadow-md shadow-blue-900/15 transition hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg active:translate-y-0 lg:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-teal-700 px-5 py-3 text-xs font-bold tracking-wide text-white shadow-md shadow-teal-900/15 transition hover:-translate-y-0.5 hover:bg-teal-800 hover:shadow-lg active:translate-y-0 lg:inline-flex"
           >
             Request a quote
           </Link>
@@ -97,7 +99,7 @@ export default function Navbar() {
             }
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700 lg:hidden"
           >
             {isOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
@@ -126,7 +128,7 @@ export default function Navbar() {
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-5">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
                   Explore
                 </p>
                 <p className="mt-1 text-sm text-slate-500">
@@ -150,13 +152,13 @@ export default function Navbar() {
                         aria-current={isActive ? "page" : undefined}
                         className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-semibold transition ${
                           isActive
-                            ? "bg-blue-50 text-blue-700"
-                            : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
+                            ? "bg-teal-50 text-teal-700"
+                            : "text-slate-700 hover:bg-slate-50 hover:text-teal-700"
                         }`}
                       >
                         {name}
                         {isActive && (
-                          <span className="h-2 w-2 rounded-full bg-blue-600" />
+                          <span className="h-2 w-2 rounded-full bg-teal-600" />
                         )}
                       </Link>
                     </motion.div>
@@ -164,10 +166,16 @@ export default function Navbar() {
                 })}
               </div>
               <div className="mt-auto border-t border-slate-100 pt-6">
+                <ThemeToggle
+                  theme={theme}
+                  ready={ready}
+                  onToggle={toggleTheme}
+                  className="mb-3 w-full justify-center"
+                />
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-4 text-sm font-bold text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-5 py-4 text-sm font-bold text-white shadow-lg shadow-teal-900/15 transition hover:bg-teal-800"
                 >
                   Request a quote
                 </Link>
@@ -180,5 +188,23 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
+  );
+}
+
+function ThemeToggle({ theme, ready, onToggle, className = "" }) {
+  const isDark = theme === "dark";
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-pressed={ready ? isDark : undefined}
+      aria-label={ready ? `Switch to ${isDark ? "light" : "dark"} mode` : "Change color theme"}
+      title={ready ? `Switch to ${isDark ? "light" : "dark"} mode` : "Change color theme"}
+      className={`inline-flex h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-100 ${className}`}
+    >
+      {isDark ? <Sun size={17} /> : <Moon size={17} />}
+      <span className="lg:hidden">{isDark ? "Light mode" : "Dark mode"}</span>
+      <span className="sr-only lg:not-sr-only">{isDark ? "Light" : "Dark"}</span>
+    </button>
   );
 }

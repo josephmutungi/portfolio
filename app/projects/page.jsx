@@ -19,7 +19,7 @@ function ProjectCard({ project, index }) {
     >
       <Link
         href={`/projects/${project.id}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/70 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-slate-200/70 focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-200"
       >
         <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <Image
@@ -29,7 +29,7 @@ function ProjectCard({ project, index }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
-          <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/95 px-3 py-1.5 text-[11px] font-bold text-blue-800 shadow-sm backdrop-blur">
+          <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/95 px-3 py-1.5 text-[11px] font-bold text-teal-800 shadow-sm backdrop-blur">
             {project.category}
           </span>
           <span className="absolute right-4 top-4 rounded-full bg-slate-950/70 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur">
@@ -38,7 +38,7 @@ function ProjectCard({ project, index }) {
         </div>
 
         <div className="flex flex-1 flex-col p-5 sm:p-6">
-          <h2 className="text-xl font-bold leading-snug text-slate-950 transition-colors group-hover:text-blue-800">
+          <h2 className="text-xl font-bold leading-snug text-slate-950 transition-colors group-hover:text-teal-800">
             {project.title}
           </h2>
           <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">
@@ -54,12 +54,12 @@ function ProjectCard({ project, index }) {
               </li>
             ))}
             {project.technologies.length > 3 && (
-              <li className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700">
+              <li className="rounded-full bg-teal-50 px-2.5 py-1 text-[11px] font-semibold text-teal-700">
                 +{project.technologies.length - 3}
               </li>
             )}
           </ul>
-          <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-blue-700">
+          <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-teal-700">
             View project
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </span>
@@ -95,7 +95,7 @@ export default function ProjectsPage() {
       <div className="mx-auto max-w-7xl">
         <header className="mb-9 flex flex-col gap-6 sm:mb-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
               Selected work
             </p>
             <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-900/10 transition hover:bg-blue-800"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-teal-700 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-teal-900/10 transition hover:bg-teal-800"
           >
             Discuss a project <ArrowRight size={16} />
           </Link>
@@ -129,10 +129,10 @@ export default function ProjectsPage() {
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => setActiveCategory(category)}
-                    className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-100 ${
+                    className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-100 ${
                       isActive
-                        ? "bg-blue-700 text-white"
-                        : "border border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+                        ? "bg-teal-700 text-white"
+                        : "border border-slate-200 bg-white text-slate-600 hover:border-teal-200 hover:bg-teal-50 hover:text-teal-800"
                     }`}
                   >
                     {category}
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
                 placeholder="Search projects or technology"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-10 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-10 text-sm outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
               />
               {searchTerm && (
                 <button
@@ -182,7 +182,7 @@ export default function ProjectsPage() {
                 setActiveCategory("All work");
                 setSearchTerm("");
               }}
-              className="font-semibold text-blue-700 hover:text-blue-900"
+              className="font-semibold text-teal-700 hover:text-teal-900"
             >
               Clear filters
             </button>
@@ -209,29 +209,29 @@ export default function ProjectsPage() {
                 setActiveCategory("All work");
                 setSearchTerm("");
               }}
-              className="mt-5 rounded-xl bg-blue-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-800"
+              className="mt-5 rounded-xl bg-teal-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-teal-800"
             >
               Show all projects
             </button>
           </div>
         )}
 
-        <section className="mt-14 overflow-hidden rounded-3xl bg-blue-800 px-6 py-10 text-white sm:mt-20 sm:px-10 sm:py-14">
+        <section className="mt-14 overflow-hidden rounded-3xl bg-teal-800 px-6 py-10 text-white sm:mt-20 sm:px-10 sm:py-14">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-200">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-200">
                 Your project could be next
               </p>
               <h2 className="mt-2 text-2xl font-black sm:text-3xl">
                 Let’s build something useful together.
               </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-blue-100">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-teal-100">
                 Share the problem you’re solving and we’ll help shape the next step.
               </p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+              className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-teal-800 transition hover:bg-teal-50"
             >
               Start a conversation <ArrowRight size={16} />
             </Link>

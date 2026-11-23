@@ -1,5 +1,7 @@
+import { projects } from "./projects/projectsData";
+
 export default function sitemap() {
-  return [
+  const staticPages = [
     {
       url: "https://novastackdigital.co.ke",
       lastModified: new Date(),
@@ -29,4 +31,11 @@ export default function sitemap() {
       lastModified: new Date(),
     },
   ];
+
+  const projectPages = projects.map((project) => ({
+    url: `https://novastackdigital.co.ke/projects/${project.id}`,
+    lastModified: new Date(),
+  }));
+
+  return [...staticPages, ...projectPages];
 }

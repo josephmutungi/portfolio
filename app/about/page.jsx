@@ -44,9 +44,9 @@ export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-white font-sans text-slate-900">
       <section className="relative isolate bg-slate-50 pb-16 pt-32 sm:pb-20 sm:pt-36">
-        <div aria-hidden="true" className="absolute -right-28 -top-24 -z-10 h-96 w-96 rounded-full bg-blue-100/80 blur-3xl" />
+        <div aria-hidden="true" className="absolute -right-28 -top-24 -z-10 h-96 w-96 rounded-full bg-teal-100/80 blur-3xl" />
         <div className="mx-auto max-w-7xl px-5 text-center sm:px-8">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
             About JMM Labs
           </p>
           <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
@@ -59,7 +59,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-900/10 transition hover:bg-blue-800"
+            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-teal-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-teal-900/10 transition hover:bg-teal-800"
           >
             Talk with our team <ArrowRight size={16} />
           </Link>
@@ -72,7 +72,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
             Who we are
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
@@ -103,7 +103,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="relative mx-auto w-full max-w-xl"
         >
-          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-blue-100 to-slate-100 blur-xl" />
+          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-teal-100 to-slate-100 blur-xl" />
           <Image
             src="/image4.png"
             alt="JMM Labs software development workspace"
@@ -118,7 +118,7 @@ export default function AboutPage() {
       <section className="bg-slate-950 py-16 text-white sm:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
               Meet the founder
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
@@ -142,7 +142,7 @@ export default function AboutPage() {
               />
             </div>
             <div className="text-sm text-slate-300">
-              <UsersRound className="mx-auto mb-1 hidden text-blue-300 md:block" size={18} />
+              <UsersRound className="mx-auto mb-1 hidden text-teal-300 md:block" size={18} />
               Nairobi, Kenya · Remote worldwide
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto mb-9 max-w-2xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
             How we work
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
@@ -168,7 +168,7 @@ export default function AboutPage() {
               transition={{ delay: index * 0.06 }}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
             >
-              <p className="text-sm font-black text-blue-700">{number}</p>
+              <p className="text-sm font-black text-teal-700">{number}</p>
               <h3 className="mt-4 text-lg font-bold text-slate-900">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
             </motion.article>
@@ -179,7 +179,7 @@ export default function AboutPage() {
       <section className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto mb-9 max-w-2xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">
               What guides us
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
@@ -189,7 +189,7 @@ export default function AboutPage() {
           <div className="grid gap-4 md:grid-cols-3">
             {values.map(({ icon: Icon, title, description }) => (
               <article key={title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
                   <Icon size={21} />
                 </span>
                 <h3 className="mt-5 text-xl font-bold text-slate-900">{title}</h3>
@@ -201,17 +201,17 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 rounded-3xl bg-blue-700 p-7 text-white shadow-xl shadow-blue-900/10 sm:p-10 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 rounded-3xl bg-teal-700 p-7 text-white shadow-xl shadow-teal-900/10 sm:p-10 md:flex-row md:items-center">
           <div>
-            <Rocket className="mb-4 text-blue-200" size={24} />
+            <Rocket className="mb-4 text-teal-200" size={24} />
             <h2 className="text-2xl font-black sm:text-3xl">Have a project in mind?</h2>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-blue-100">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-teal-100">
               Tell us what you’re trying to achieve and we’ll help you map out the next step.
             </p>
           </div>
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-blue-50"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-teal-800 transition hover:bg-teal-50"
           >
             Contact JMM Labs <ArrowRight size={16} />
           </Link>
